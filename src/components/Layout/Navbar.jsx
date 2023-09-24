@@ -39,24 +39,8 @@ export function NavbarDefault() {
           Home
         </Typography>
       </Link>
-      <Link to='/rent/property'>
-        <Typography
-          as="li"
-          variant="small"
-          color="blue-gray"
-          className="p-1 font-normal"
-        >
-          Rent
-        </Typography>
-      </Link>
-      <Typography
-        as="li"
-        variant="small"
-        color="blue-gray"
-        className="p-1 font-normal"
-      >
-        Buy
-      </Typography>
+      
+      
       <Link to='/properties'>
         <Typography
           as="li"
