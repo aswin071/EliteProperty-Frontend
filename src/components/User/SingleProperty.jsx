@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import Calendar from 'react-calendar';
+import { Link } from 'react-router-dom';
 
 
 
@@ -19,9 +20,14 @@ function SingleProperty() {
   const [vendorDetails, setVendorDetails] = useState({});
   const [isInterestSent, setIsInterestSent] = useState(false);
   const [selectedDates, setSelectedDates] = useState({ fromDate: null, toDate: null });
+  const [bookButtonMessage, setBookButtonMessage] = useState('')
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
+  const [error, setError] = useState('');
+  
+ 
 
-  // const [value, onChange] = useState<Value>(new Date());
-
+  
   useEffect(() => {
     async function fetchProperty() {
       try {
@@ -42,6 +48,8 @@ function SingleProperty() {
     fetchProperty();
   }, [id]);
 
+  
+
   const handleInterestClick = async () => {
     try {
       const response = await api.post('/users/book-property/', {
@@ -58,6 +66,44 @@ function SingleProperty() {
       console.error('Error:', error);
     }
   };
+  const handleFromDateChange = (event) => {
+    setCheckInDate(event.target.value);
+  };
+
+  const handleToDateChange = (event) => {
+    setCheckOutDate(event.target.value);
+  };
+
+  
+  const handleBookClick = async () => {
+    try {
+      if (!checkInDate || !checkOutDate) {
+        toast.error('Please select both check-in and check-out dates.');
+        return;
+      }
+  
+      const response = await api.post('buyproperty/rent-booking/', {
+        property_id: property.id,
+        check_in_date: checkInDate,
+        check_out_date: checkOutDate,
+      });
+  
+      if (response.status === 201) {
+        setIsInterestSent(true);
+        toast.success('Property Booked successfully.');
+        window.location.href = `/property/rent/${property.id}`;
+      } else if (response.status === 400) 
+        if (response.data && response.data.message) {
+        toast.error(response.data.message);
+      } else {
+        toast.error('An error occurred while booking.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+  
 
   return (
     <div>
@@ -88,26 +134,46 @@ function SingleProperty() {
               <h1 className="text-3xl font-semibold text-gray-800">{property.property_type}</h1>
               <div className="flex justify-between mt-4">
               {property.property_type === 'Rent' && (
-                <div>
-                 
-                  <div>
-                    <label htmlFor="fromDate">From Date:</label>
-                    <input type="date" id="fromDate" name="fromDate" />
-                  </div>
-                  <div>
-                    <label htmlFor="toDate">To Date:</label>
-                    <input type="date" id="toDate" name="toDate" />
-                  </div>
-                  <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                    
-                    
-                  >
-                    Book
-                  </button>
-                </div>
-              )}
-              {property.price && (
+        <div>
+          <div>
+            <label htmlFor="fromDate">From Date:</label>
+            <input
+              type="date"
+              id="fromDate"
+              name="fromDate"
+              value={checkInDate}
+              onChange={handleFromDateChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="toDate">To Date:</label>
+            <input
+              type="date"
+              id="toDate"
+              name="toDate"
+              value={checkOutDate}
+              onChange={handleToDateChange}
+            />
+          </div>
+          <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          onClick={handleBookClick}
+        >
+          Book
+        </button>
+
+          {/* <Link to={`/property/rent/${property.id}`}>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              onClick={handleBookClick}
+             
+            >
+              Book
+            </button>
+          </Link> */}
+          {error && <p className="text-red-500">{error}</p>}
+        </div>
+      )}     {property.price && (
                 <h1 className="text-xl text-gray-700">
                   {property.property_type === 'Rent'
                     ? `₹${property.price} / per month`

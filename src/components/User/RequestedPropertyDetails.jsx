@@ -35,7 +35,7 @@ function RequestedPropertyDetails() {
                                 <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-dark">
                                     {property.property.title}
                                 </h5>
-                                <p>Price: ${property.property.price}</p>
+                                    <p>Price: ₹{property.property.price}</p>                    
                                 <p>Location: {property.property.location}</p>
 
                                 {property.property_status === 'available' && (

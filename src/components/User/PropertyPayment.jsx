@@ -21,8 +21,8 @@ function PropertyPayment() {
                 if (response.data.propertyData) {
                     const propertyData = response.data.propertyData;
                     setPropertyData(propertyData);
-                    setPropertyId(propertyData.property.id); // Store the property ID
-                    setDepositAmount(propertyData.initial_deposit); // Store the deposit amount
+                    setPropertyId(propertyData.property.id); 
+                    setDepositAmount(propertyData.initial_deposit); 
                 }
             } catch (error) {
                 console.error('Error fetching property details:', error);
@@ -111,12 +111,9 @@ function PropertyPayment() {
                             className="w-full h-64 object-cover rounded-lg mb-4"
                         />
                         
-                        {/* Other property details */}
-                        {/* ... */}
-                        
-                        {/* Deposit amount */}
+                     
                         <div className="mt-4">
-                            <p>Deposit Amount: ${propertyData.initial_deposit}</p>
+                            <p>Deposit Amount: ₹{propertyData.initial_deposit}</p>
                         </div>
 
                         {/* Payment button */}

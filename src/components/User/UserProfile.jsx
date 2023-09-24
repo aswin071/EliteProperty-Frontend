@@ -4,6 +4,8 @@ import api from '../../api/axiosConfig'
 import UserEditProfileModal from './UserEditProfileModal';
 import { NavbarDefault } from '../Layout/Navbar';
 import RequestedPropertyDetails from './RequestedPropertyDetails';
+import { Footer } from '../Layout/Footer';
+import { Link } from 'react-router-dom';
 
 
 
@@ -15,7 +17,7 @@ function UserProfile() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    // Fetch profile data
+    
     api
       .get('/users/user/profile/')
       .then((response) => {
@@ -87,7 +89,13 @@ function UserProfile() {
               ></path>
             </svg>
             <span>Edit Profile</span>
+            
           </button>
+          <Link to='/my-bookings'>
+          <button>My Properties
+
+          </button>
+          </Link>
         </div>
       </div>
     </div>
@@ -131,13 +139,17 @@ function UserProfile() {
 
           </div>
         </div>
+        
 
-        <RequestedPropertyDetails/>
+       
         </>
         )}
       </div>
       <UserEditProfileModal isOpen={isModalOpen} closeModal={closeModal} updateProfileData={updateProfileDataInParent}/>
+
+      <Footer/>
     </div>
+    
   )
 }
 

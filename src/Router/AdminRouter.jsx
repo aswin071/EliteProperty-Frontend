@@ -6,6 +6,7 @@ import AdminVendorManagement from '../components/Admin/AgentManagement'
 import AdminUserMangement from '../components/Admin/AdminUserMangement'
 import PropertyManagement from '../components/Admin/PropertyManagement'
 import { useSelector } from 'react-redux';
+import AdminCommission from '../components/Admin/AdminCommission'
 
 
 function AdminRouter() {
@@ -17,6 +18,7 @@ function AdminRouter() {
         <Route path='/eliteproperty-agent' element={<AdminVendorManagement/>} />
         <Route path='/eliteproperty-user' element={<AdminUserMangement/>} />
         <Route path='/eliteproperty-property' element={<PropertyManagement/>} />
+        <Route path='/commission-view' element={<AdminCommission/>} />
         
         </Routes>
   )

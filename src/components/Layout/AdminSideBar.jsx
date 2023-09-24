@@ -171,7 +171,8 @@ export default function Sidebar() {
                                 </a>
                                 </NavLink>
                             </li>
-                            {/* <li className="rounded-sm">
+                             <li className="rounded-sm">
+                             <NavLink to="/admin/commission-view" className="flex items-center p-2 space-x-3 rounded-md">
                                 <a
                                     href="#"
                                     className="flex items-center p-2 space-x-3 rounded-md"
@@ -196,10 +197,11 @@ export default function Sidebar() {
                                         />
                                     </svg>
                                     <span className="text-gray-100">
-                                        Settings
+                                        CommissionView
                                     </span>
                                 </a>
-                            </li> */}
+                                </NavLink>
+                            </li> 
                             
                             <li className="rounded-sm">
     <Link to="/login" onClick={handleLogout} className="flex items-center p-2 space-x-3 rounded-md">
