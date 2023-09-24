@@ -8,7 +8,7 @@ import Logout from '../components/Auth/Logout';
 import Properties from '../components/User/Properties';
 import SingleProperty from '../components/User/SingleProperty';
 import UserProfile from '../components/User/UserProfile';
-import RentProperty from '../components/User/RentProperty';
+
 import PropertyPayment from '../components/User/PropertyPayment';
 import PaymentSuccessPage from '../components/User/PaymentSuccess';
 import Agents from '../components/User/Agents';
@@ -31,7 +31,7 @@ function UserRouter() {
       <Route path="/singleproperty/:id" element={  <SingleProperty />} />
 
       <Route path="/profile" element={ <UserProfile />} />
-      <Route path="/rent/property" element={<RentProperty />} />
+      
       <Route path="/book/property/:id" element={<PropertyPayment />} />
       <Route path="/payment/success/" element={<PaymentSuccessPage />} />
       <Route path="/agents" element={<Agents />} />
