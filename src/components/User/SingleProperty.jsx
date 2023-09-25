@@ -135,26 +135,34 @@ function SingleProperty() {
               <div className="flex justify-between mt-4">
               {property.property_type === 'Rent' && (
         <div>
-          <div>
-            <label htmlFor="fromDate">From Date:</label>
-            <input
-              type="date"
-              id="fromDate"
-              name="fromDate"
-              value={checkInDate}
-              onChange={handleFromDateChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="toDate">To Date:</label>
-            <input
-              type="date"
-              id="toDate"
-              name="toDate"
-              value={checkOutDate}
-              onChange={handleToDateChange}
-            />
-          </div>
+      <div className="flex">
+  <div>
+    <label htmlFor="fromDate">Check In:</label>
+    <input
+      type="date"
+      id="fromDate"
+      name="fromDate"
+      value={checkInDate}
+      onChange={handleFromDateChange}
+      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Select date"
+    />
+  </div>
+  <div>
+    <label htmlFor="toDate">Check Out:</label>
+    <input
+      type="date"
+      id="toDate"
+      name="toDate"
+      value={checkOutDate}
+      onChange={handleToDateChange}
+      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Select date"
+    />
+  </div>
+</div>
+
+
           <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
           onClick={handleBookClick}
@@ -162,15 +170,7 @@ function SingleProperty() {
           Book
         </button>
 
-          {/* <Link to={`/property/rent/${property.id}`}>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-              onClick={handleBookClick}
-             
-            >
-              Book
-            </button>
-          </Link> */}
+       
           {error && <p className="text-red-500">{error}</p>}
         </div>
       )}     {property.price && (

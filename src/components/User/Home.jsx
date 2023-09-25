@@ -34,6 +34,9 @@ function Home() {
     fetchAgentProfiles();
   }, []);
   
+  const reducedFontSize = {
+    fontSize: '15px', 
+  };
 
   return (
     <div>
@@ -42,10 +45,10 @@ function Home() {
     <div className="flex flex-col md:flex-row">
       <div className="w-full md:w-4/6 p-4 bg-gray-500 flex flex-col justify-center items-center text-center">
         <div className="mb-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" >
             "We help people find their dream house"
           </h1>
-          <p className="text-black">
+          <p className="text-black" style={reducedFontSize}>
             "Having trouble finding a place to stay? You came to the right place!
             By saving your money, you can find a house or apartment that's right
             for you."

@@ -20,7 +20,7 @@ function RequestedPropertyDetails() {
 
     return (
         <div>
-            <h1 className="text-2xl font-bold mb-4">Requested Property Details</h1>
+            <h1 className="text-2xl font-bold mb-4"></h1>
             <div className="flex flex-wrap">
                 {propertyDetails.map((property) => (
                     <div key={property.id} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
@@ -35,7 +35,7 @@ function RequestedPropertyDetails() {
                                 <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-dark">
                                     {property.property.title}
                                 </h5>
-                                    <p>Price: ₹{property.property.price}</p>                    
+                                <p>Price: ₹{property.property.price}</p>
                                 <p>Location: {property.property.location}</p>
 
                                 {property.property_status === 'available' && (
@@ -55,8 +55,20 @@ function RequestedPropertyDetails() {
                                                 </Link>
                                             </>
                                         )}
+                                        {property.is_paid && property.property_status === 'available' && (
+                                            <a
+                                                href={`/users/generate_pdf/${property.id}/`} 
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                download="property_details.pdf"
+                                                className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+                                            >
+                                                Download PDF
+                                            </a>
+                                        )}
                                     </>
                                 )}
+
                                 {property.property_status === 'sold' && (
                                     <div className="bg-red-500 text-white px-2 py-1 rounded-full mb-2">
                                         Property {property.property_status}

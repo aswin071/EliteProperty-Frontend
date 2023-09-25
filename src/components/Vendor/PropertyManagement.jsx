@@ -5,10 +5,16 @@ import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ReactCrop from 'react-image-crop';
+import 'react-image-crop/dist/ReactCrop.css';
+import ImageCrop from 'react-image-crop';
+
 
 function PropertyManagement() {
   const dispatch = useDispatch();
   const authToken = useSelector(state => state.accessToken);
+  const [crop, setCrop] = useState({ aspect: 16 / 9 }); 
+  const [imageRef, setImageRef] = useState(null);
 
   // Define state to store form data
   const [formData, setFormData] = useState({
@@ -26,6 +32,16 @@ function PropertyManagement() {
           image3: null,
   });
 
+  const onCropChange = (newCrop) => {
+    setCrop(newCrop);
+  };
+  const onImageLoad = (image) => {
+    setImageRef(image);
+  };
+
+  const onCropComplete = (croppedArea, croppedAreaPixels) => {
+    // You can save the cropped area or pixels as needed
+  };
   // Handle form input changes
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -246,6 +262,7 @@ function PropertyManagement() {
                 accept="image/*" // Allow only image files
                 onChange={handleChange}
               />
+              
             </div>
             <div className="mb-4">
               <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image2">

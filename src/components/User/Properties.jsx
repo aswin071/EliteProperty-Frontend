@@ -10,7 +10,7 @@ function Properties() {
   const [searchproperty, setSearchProperty] = useState('');
   const [filterOption, setFilterOption] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(10); // Adjust as needed
+ 
   const propertiesPerPage = 4;
   const [searchLocation, setSearchLocation] = useState('');
 
@@ -141,20 +141,25 @@ function Properties() {
         </div>
       </div>
       <div className="text-center mt-4">
-        <ul className="pagination">
-          <li onClick={handlePrevPage}>&laquo; Previous</li>
-          {Array.from({ length: totalPages }, (_, i) => (
-            <li
-              key={i}
-              onClick={() => setCurrentPage(i + 1)}
-              className={i + 1 === currentPage ? 'active' : ''}
-            >
-              {i + 1}
-            </li>
-          ))}
-          <li onClick={handleNextPage}>Next &raquo;</li>
-        </ul>
-      </div>
+  <ul className="pagination">
+    <li onClick={handlePrevPage} className="cursor-pointer">
+      <span>&laquo;</span> Previous
+    </li>
+    {Array.from({ length: totalPages }, (_, i) => (
+      <li
+        key={i}
+        onClick={() => setCurrentPage(i + 1)}
+        className={`cursor-pointer ${i + 1 === currentPage ? 'active' : ''}`}
+      >
+        {i + 1}
+      </li>
+    ))}
+    <li onClick={handleNextPage} className="cursor-pointer">
+      Next <span>&raquo;</span>
+    </li>
+  </ul>
+</div>
+
 
       <Footer />
     </div>
