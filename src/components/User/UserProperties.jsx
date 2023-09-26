@@ -32,9 +32,9 @@ function UserProperties() {
 
   return (
     <div>
-      <NavbarDefault />
+     
       <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-semibold mb-6">Your Properties</h1>
+        <h1 className="text-3xl font-semibold mb-6">Your Bookings</h1>
         {properties.length === 0 ? (
           <div className="text-center">
             <p className="text-gray-600 text-lg">No properties found.</p>
@@ -44,20 +44,26 @@ function UserProperties() {
           </div>
         ) : (
           <div>
-            {properties.map((property) => (
-              <div key={property.id} className="mb-8 border p-6 rounded-lg shadow-lg">
-                <h2 className="text-xl font-semibold mb-2">{property.property.title}</h2>
-                <h2 className="text-lg font-semibold">Amount Paid: {property.property.price}</h2>
+            {properties.map((propertyData) => (
+              <div key={propertyData.booking.id} className="mb-8 border p-6 rounded-lg shadow-lg">
+                <h2 className="text-xl font-semibold mb-2">{propertyData.property.title}</h2>
+                <h2 className="text-lg font-semibold">Amount Paid: {propertyData.property.price}</h2>
                 <p className="mt-2">
-                  Check-in Date: {property.check_in_date}<br />
-                  Check-out Date: {property.check_out_date}
+                  Check-in Date: {propertyData.booking.check_in_date}<br />
+                  Check-out Date: {propertyData.booking.check_out_date}<br />
+                  Current Status: {propertyData.booking.status}
                 </p>
-                <button
-                  onClick={() => openVendorModal(property.property.vendor)}
+                <img
+                  src={propertyData.property.image1}
+                  alt={propertyData.property.title}
+                  className="w-full h-auto mt-4"
+                />
+                {/* <button
+                  onClick={() => openVendorModal(propertyData.property.vendor)}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
                 >
                   View Vendor
-                </button>
+                </button> */}
               </div>
             ))}
           </div>
@@ -71,7 +77,7 @@ function UserProperties() {
           />
         )}
       </div>
-      <RequestedPropertyDetails />
+    
     </div>
   );
 }

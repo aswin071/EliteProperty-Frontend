@@ -15,9 +15,14 @@ import Agents from '../components/User/Agents';
 import { useSelector } from 'react-redux';
 import CheckoutForRentProperty from '../components/User/CheckoutForRentProperty';
 import UserProperties from '../components/User/UserProperties';
+import UserBookings from '../components/User/UserBookings';
 
 function UserRouter() {
   const user = useSelector((state) => state.user);
+  console.log('userrrrrrrrrr:',user)
+  // if (user) {
+  //   return <Navigate to="/" />; 
+  //  }
 
   return (
     <Routes>
@@ -36,7 +41,8 @@ function UserRouter() {
       <Route path="/payment/success/" element={<PaymentSuccessPage />} />
       <Route path="/agents" element={<Agents />} />
       <Route path="/property/rent/:id" element={<CheckoutForRentProperty />} />
-      <Route path="/my-bookings" element={<UserProperties />} />
+      <Route path="" element={<UserProperties />} />
+      <Route path="/my-bookings" element={<UserBookings />} />
     </Routes>
   );
 }

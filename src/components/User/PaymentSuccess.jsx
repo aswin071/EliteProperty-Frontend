@@ -14,10 +14,10 @@ const PaymentSuccessPage = () => {
         className="w-64 h-60 mb-8"
       />
       <h2 className="text-2xl font-semibold text-green-500">Payment Successfully Completed</h2>
-      <Link to="/" className="mt-4 bg-blue-300 text-white px-4 py-2 rounded-lg">
-        Go to Home
+      <Link to="/my-bookings" className="mt-4 bg-blue-300 text-white px-4 py-2 rounded-lg">
+       My Bookings
       </Link>
-      <Footer/>
+      
     </div>
     </div>
   );

@@ -12,6 +12,9 @@ import AdminCommission from '../components/Admin/AdminCommission'
 function AdminRouter() {
 
   const user = useSelector((state) => state.user);
+  // if (user) {
+  //   return <Navigate to="/admin" />; // Redirect to the admin dashboard
+  // }
   return (
     <Routes>
         <Route path='/' element={<AdminDashboard/>} />

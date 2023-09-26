@@ -23,8 +23,8 @@ function Login() {
     const accessToken = useSelector(state => state.accessToken);
 
     console.log('Stored Email in Redux:', emailAddress);
-    console.log('User Details in Redux:', user);
-    console.log('User Details in Redux:', refreshToken);
+    console.log('User Details in Reduxxxxxxxxxxxxxxxxxxxxxxxxxxx:', user);
+    console.log('User Details in Reduxttttttttttttttttttttt:', refreshToken);
 
     const handleLogin = async () => {
         try {
@@ -62,6 +62,28 @@ function Login() {
             toast.error('An error occurred during login.');
         }
     };
+
+     // Check if the user is already authenticated, and if so, redirect
+  if (user) {
+    if (user.user_type === "Admin") {
+      navigate('/admin');
+    } else if (user.user_type === "User") {
+      navigate('/');
+    } else if (user.user_type === "Vendor") {
+      if (user.is_profile) {
+        navigate('/vendor');
+      } else {
+        navigate('/vendor/register');
+      }
+    }
+
+    // Return null to prevent rendering the login form
+    return null;
+  }
+  if (user) {
+    navigate('/');
+    return null; // Return null to prevent rendering the login form
+  }
     
     
     return (

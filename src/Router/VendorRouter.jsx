@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route,Navigate } from 'react-router-dom'
 import VendorDashboard from '../components/Vendor/VendorDashboard'
 import VendorRegistration from '../components/Vendor/VendorRegistration'
 import PropertyManagement from '../components/Vendor/PropertyManagement'
@@ -17,6 +17,9 @@ import BookingDetails from '../components/Vendor/BookingDetails'
 function VendorRouter() {
   const user = useSelector((state) => state.user);
   const isVendor = user && user.user_type === 'Vendor';
+  // if (user) {
+  //   return <Navigate to="/" />; // Redirect to the vendor dashboard
+  // }
   return (
     <Routes>
         
