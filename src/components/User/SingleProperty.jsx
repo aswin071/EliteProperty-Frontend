@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import Calendar from 'react-calendar';
 import { Link } from 'react-router-dom';
-
+import { Carousel } from 'flowbite-react';
 
 
 function SingleProperty() {
@@ -112,19 +112,51 @@ function SingleProperty() {
       {property && (
         <div className="container mx-auto p-6">
           <div className="flex">
-            <div className="w-1/2">
-              <img
-                src={process.env.REACT_APP_API_BASE_URL + property.image1}
-                alt={property.title}
-                className="w-full h-64 object-cover rounded-l-lg"
-              />
-            </div>
-            <div className="w-1/2">
-              <img
-                src={process.env.REACT_APP_API_BASE_URL + property.image2}
-                alt={property.title}
-                className="w-full h-64 object-cover rounded-r-lg"
-              />
+          <div className="w-1/2">
+          <Carousel  className="w-full h-64 object-cover rounded-l-lg" >
+      <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image1}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+      <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image2}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+      <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image3}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+      <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image2}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+      <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image1}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+    </Carousel>
+        </div>
+              
+            
+            <div className="w-1/2 ms-2">
+             <Carousel>
+             <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image2}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+        <img
+        alt={property.title}
+        src={process.env.REACT_APP_API_BASE_URL + property.image3}
+        className="w-full h-64 object-cover rounded-l-lg"
+      />
+
+             </Carousel>
             </div>
           </div>
 
