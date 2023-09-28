@@ -38,7 +38,7 @@ function UserRouter() {
       
       <Route path="/singleproperty/:id" element={  <SingleProperty />} />
 
-      <Route path="/profile" element={ <ProtectedRoute><UserProfile /></ProtectedRoute>} />
+      <Route path="/profile" element={ <UserProfile />} />
       
       <Route path="/book/property/:id" element={<PropertyPayment />} />
       <Route path="/payment/success/" element={<PaymentSuccessPage />} />
