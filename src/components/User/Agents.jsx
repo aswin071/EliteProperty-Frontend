@@ -2,6 +2,7 @@ import React ,{ useState ,useEffect} from 'react';
 import { NavbarDefault } from '../Layout/Navbar'
 import api from '../../api/axiosConfig';
 import { useSelector } from 'react-redux';
+import { Footer } from '../Layout/Footer';
 
 
 
@@ -28,28 +29,53 @@ const user = useSelector((state) => state.user);
     <div>
 
         <NavbarDefault/>
-        <div className="mt-8">
-  <h2 className="text-2xl font-semibold text-center mb-4">OUR BEST SELLERS</h2>
-  <div className="flex flex-wrap justify-center">
-    {agentProfiles.map((profile) => (
-      <div key={profile.id} className="w-1/4 p-4">
-        <div className="bg-white p-4 rounded-lg shadow-lg text-center">
-          <img
-            src={process.env.REACT_APP_API_BASE_URL + profile.profile_photo}
-            alt="Profile Photo"
-            className="w-32 h-32 rounded-full mx-auto mb-4"
-          />
-          <h2 className="text-lg font-semibold">{profile.vendor.username}</h2>
-          <p className="text-lg font-semibold">{profile.year_of_experience} years of experience</p>  
-          <button className="bg-blue-500 text-white py-2 px-4 rounded-full mt-2">
-            View
-          </button>
+        <div className="mt-8 bg-gray-200">
+  <h2 className="mb-4 mt-5 text-4xl font-extrabold text-gray-900 dark:text-dark text-center">
+    Our Team
+  </h2>
+  <p className="mb-4 mt-3 text-center text-base  text-gray-600 dark:text-dark text-center">
+  Discover our talented and experienced property agents.<br></br>
+  Learn more about their expertise, years of experience, and specialization.
+  Find the perfect agent to help you with your real estate needs.
+  </p>
+  
+
+  <div className="flex items-center justify-center h-screen">
+    <div className="flex flex-wrap justify-center">
+      {agentProfiles.map((profile) => (
+        <div key={profile.id} className="w-80 py-6 px-6 bg-white shadow-lg rounded-lg m-4">
+          <div className="flex justify-center md:justify-end -mt-16">
+            <img
+              className="w-20 h-20 object-cover rounded-full border-2 border-indigo-500"
+              src={process.env.REACT_APP_API_BASE_URL + profile.profile_photo}
+              alt={profile.name}
+            />
+          </div>
+          <div>
+            <h2 className="text-gray-800 text-3xl font-semibold">{profile.vendor.username}</h2>
+            <p className="mt-2 text-gray-600">Years of Experience: {profile.year_of_experience}</p>
+            <p className="text-gray-600">Specialization: {profile.specialization}</p>
+            <p className="text-gray-600">Description: {profile.description}</p>
+            {/* Add more vendor details here */}
+          </div>
+          <div className="flex justify-end mt-4">
+            <a href={profile.contactLink} className="text-xl font-medium text-indigo-500">
+              Contact {profile.name}
+            </a>
+          </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 </div>
-    </div>
+<Footer/>
+</div>
+
+
+
+
+
+
   )
 }
 
