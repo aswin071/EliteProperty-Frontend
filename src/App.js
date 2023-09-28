@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 
 function App() {
   const user = useSelector(state => state.user);
+  console.log('userrrrrrr:',user)
 
   const isAdmin = user && user.user_type === 'Admin';
   const isUser = user && user.user_type === 'User';

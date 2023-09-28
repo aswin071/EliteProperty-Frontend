@@ -6,6 +6,7 @@ import { NavbarDefault } from '../Layout/Navbar';
 import RequestedPropertyDetails from './RequestedPropertyDetails';
 import { Footer } from '../Layout/Footer';
 import { Link } from 'react-router-dom';
+import { Button } from 'flowbite-react';
 
 
 
@@ -92,9 +93,15 @@ function UserProfile() {
             
           </button>
           <Link to='/my-bookings'>
-          <button>My Properties
-
-          </button>
+          <Button
+        color="dark"
+        pill
+      >
+        <p>My Properties
+          
+        </p>
+      </Button>
+          
           </Link>
         </div>
       </div>

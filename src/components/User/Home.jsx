@@ -1,6 +1,6 @@
 
 
-import Banner1 from '../../Images/Banner1.png';
+import Banner1 from '../../Images/Banner1.webp';
 import { useSelector } from 'react-redux';
 import { Navbar, navbar } from '@material-tailwind/react';
 import { NavbarDefault } from '../Layout/Navbar';
@@ -35,6 +35,9 @@ function Home() {
     fetchAgentProfiles();
   }, []);
   
+   const bannerStyle = {
+    clipPath: 'polygon(10% 0, 100% 0%, 100% 100%, 0 100%)',
+  };
   const reducedFontSize = {
     fontSize: '15px', 
   };
@@ -43,51 +46,51 @@ function Home() {
     <div>
     <NavbarDefault />
   
-    <div className="flex flex-col md:flex-row">
-      <div className="w-full md:w-4/6 p-4 bg-gray-500 flex flex-col justify-center items-center text-center">
-        <div className="mb-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" >
-            "We help people find their dream house"
-          </h1>
-          <p className="text-black" style={reducedFontSize}>
-            "Having trouble finding a place to stay? You came to the right place!
-            By saving your money, you can find a house or apartment that's right
-            for you."
-          </p>
+   
+<div class="w-full">
+    {/* <nav class="bg-white shadow-lg">
+        <div class="md:flex items-center justify-between py-2 px-8 md:px-12">
+            <div class="flex justify-between items-center">
+               <div class="text-2xl font-bold text-gray-800 md:text-3xl">
+                    <a href="#">Brand</a>
+               </div>
+                <div class="md:hidden">
+                    <button type="button" class="block text-gray-800 hover:text-gray-700 focus:text-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+                            <path class="hidden" d="M16.24 14.83a1 1 0 0 1-1.41 1.41L12 13.41l-2.83 2.83a1 1 0 0 1-1.41-1.41L10.59 12 7.76 9.17a1 1 0 0 1 1.41-1.41L12 10.59l2.83-2.83a1 1 0 0 1 1.41 1.41L13.41 12l2.83 2.83z"/>
+                            <path d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row hidden md:block -mx-2">
+                <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Home</a>
+                <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">About</a>
+                <a href="#" class="text-gray-800 rounded hover:bg-gray-900 hover:text-gray-100 hover:font-medium py-2 px-2 md:mx-2">Contact</a>
+            </div>
         </div>
-        <div className="w-full md:w-1/2 p-4 bg-gray-500">
-          <div className="flex items-center mt-4">
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-full focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                placeholder="Search..."
-              />
-              <button className="px-4 text-white bg-purple-600 rounded-full">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-5 h-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-              </button>
+    </nav> */}
+    <div className="flex bg-white " style={{ height: '500px' }}>
+        <div className="flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2">
+          <div>
+            <h2 className="text-3xl font-semibold text-gray-800 md:text-4xl">Search For Your <span className="text-indigo-600">Home</span></h2>
+            <p className="mt-2 text-sm text-gray-500 md:text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis commodi cum cupiditate ducimus, fugit harum id necessitatibus odio quam quasi, quibusdam rem tempora voluptates. Cumque debitis dignissimos id quam vel!</p>
+            <div className="flex justify-center lg:justify-start mt-6">
+              <a className="px-4 py-3 bg-gray-900 text-gray-200 text-xs font-semibold rounded hover:bg-gray-800" href="#">Get Started</a>
+              <a className="mx-4 px-4 py-3 bg-gray-300 text-gray-900 text-xs font-semibold rounded hover:bg-gray-400" href="#">Learn More</a>
             </div>
           </div>
         </div>
-      </div>
-  
-      <div className="w-full md:w-2/6">
-        <img src={Banner1} alt="Image" className="w-full h-[500px]" />
+        <div className="hidden lg:block lg:w-1/2" style={bannerStyle}>
+          <img src={Banner1} alt="Image" className="w-full h-[500px]" />
+          <div className="h-full bg-black opacity-25"></div>
+        </div>
       </div>
     </div>
+      {/* <div className="w-full md:w-2/6">
+        <img src={Banner1} alt="Image" className="w-full h-[500px]" />
+      </div>
+    </div> */}
   
     <div className="mt-2 md:h-[250px]">
       <div className="flex flex-col justify-center items-center h-full text-center text-black">

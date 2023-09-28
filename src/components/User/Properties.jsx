@@ -11,7 +11,7 @@ function Properties() {
   const [filterOption, setFilterOption] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
  
-  const propertiesPerPage = 4;
+  const propertiesPerPage = 6;
   const [searchLocation, setSearchLocation] = useState('');
 
   useEffect(() => {
@@ -47,6 +47,7 @@ function Properties() {
   return (
     <div>
       <NavbarDefault />
+      
 
       <div className="mt-4 text-center">
         <img src={property_img} alt="Description of the image" className="w-full" />
@@ -84,62 +85,63 @@ function Properties() {
         </select>
       </div>
 
-      <div className="max-w-screen-lg mx-auto">
-        <div className="text-center mt-8 mb-4"></div>
-        <div className="flex flex-wrap justify-center">
-          {properties
-            .filter((property) =>
-              property.title.toLowerCase().includes(searchproperty.toLowerCase())
-            )
-            .filter((property) =>
-              filterOption === 'All'
-                ? true // Show all properties
-                : property.property_type === filterOption
-            )
-            .filter((property) =>
-              searchLocation.trim() === ''
-                ? true
-                : property.location.toLowerCase().includes(searchLocation.toLowerCase())
-            )
-            .slice(
-              (currentPage - 1) * propertiesPerPage,
-              currentPage * propertiesPerPage
-            )
-            .map((property) => (
-              <div
-                key={property.id}
-                className="max-w-sm rounded overflow-hidden shadow-lg m-4"
-              >
-                <div className="h-48 w-full relative">
-                  <img
-                    src={process.env.REACT_APP_API_BASE_URL + property.image1}
-                    alt="Property"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="px-6 py-4">
-                  <div className="font-bold text-xl mb-2">{property.title}</div>
-
-                  <p className="text-gray-700 text-base">
-                    Price: {property.price}
-                  </p>
-                  <p className="text-gray-700 text-base">
-                    Location: {property.location}
-                  </p>
-                  <p className="text-gray-700 text-base">
-                    Vendor: {property.vendor.username}
-                  </p>
-
-                  <Link to={`/singleproperty/${property.id}`}>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-2">
-                      View Details
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            ))}
+      {/* property card */}
+      <div className="mt-4 flex justify-center items-center">
+<div className="mt-4 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  {properties
+    .filter((property) =>
+      property.title.toLowerCase().includes(searchproperty.toLowerCase())
+    )
+    .filter((property) =>
+      filterOption === 'All'
+        ? true // Show all properties
+        : property.property_type === filterOption
+    )
+    .filter((property) =>
+      searchLocation.trim() === ''
+        ? true
+        : property.location.toLowerCase().includes(searchLocation.toLowerCase())
+    )
+    .slice((currentPage - 1) * propertiesPerPage, currentPage * propertiesPerPage)
+    .map((property) => (
+      <Link to={`/singleproperty/${property.id}`}
+ key={property.id} className="max-w-xs relative rounded overflow-hidden shadow-lg hover:shadow-xl">
+        <img
+          className="w-full h-40 transition-transform duration-300 transform hover:scale-105"
+          src={process.env.REACT_APP_API_BASE_URL + property.image1}
+          alt={`Property Image - ${property.title}`}
+        />
+        <div className="absolute top-2 left-2 rounded-full bg-blue-600 py-1 px-2 text-xs font-medium text-white">
+          {property.property_type}
         </div>
-      </div>
+        <div className="px-6 py-4">
+          <div className="mb-2">
+            <h2 className="text-xl font-bold text-gray-900">{property.title}</h2>
+            <p>Location: {property.location}</p>
+          </div>
+          <div className="flex justify-between">
+            <div className="flex items-center">
+              <img src="https://img.icons8.com/windows/24/null/bedroom.png" alt="Bedrooms" />
+              <p className="ml-2 text-sm font-medium text-gray-700">{property.num_bedrooms} Bedrooms</p>
+            </div>
+            <div className="flex items-center">
+              <img src="https://img.icons8.com/pastel-glyph/24/null/bath--v2.png" alt="Bathrooms" />
+              <p className="ml-2 text-sm font-medium text-gray-700">{property.num_bathrooms} Bathrooms</p>
+            </div>
+            <div className="flex items-center">
+              <img src="https://img.icons8.com/ios-glyphs/24/null/expand--v1.png" alt="Area" />
+              <p className="ml-2 text-sm font-medium text-gray-700">{property.property_size} sqm</p>
+            </div>
+          </div>
+          <div className="mt-4">
+            <p className="text-3xl font-extrabold text-blue-800">₹{property.price}</p>
+          </div>
+        </div>
+      </Link>
+    ))}
+</div>
+</div>
+
       <div className="text-center mt-4">
   <ul className="pagination">
     <li onClick={handlePrevPage} className="cursor-pointer">

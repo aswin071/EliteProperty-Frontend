@@ -58,7 +58,7 @@ function AdminCommission() {
                     <td className="px-6 py-4 whitespace-nowrap">{profile.amount}</td>
                     <td className="px-6 py-4 whitespace-nowrap">{profile.date}</td>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      {`${profile.property.vendor.first_name} ${profile.property.vendor.last_name}`}
+                      {profile.property.vendor.username} 
                     </td>
                   </tr>
                 ))

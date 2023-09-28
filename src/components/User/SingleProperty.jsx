@@ -92,11 +92,12 @@ function SingleProperty() {
         setIsInterestSent(true);
         toast.success('Property Booked successfully.');
         window.location.href = `/property/rent/${property.id}`;
-      } else if (response.status === 400) 
-        if (response.data && response.data.message) {
-        toast.error(response.data.message);
+      } else if (response.status === 400 || response.status === 500) {
+        
+        const data = await response.json();
+        setError(data.error_message);
       } else {
-        toast.error('An error occurred while booking.');
+        toast.error('Dates are not avialable Please select another.');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -108,6 +109,7 @@ function SingleProperty() {
   return (
     <div>
       <NavbarDefault />
+      
      
       {property && (
         <div className="container mx-auto p-6">
@@ -194,7 +196,7 @@ function SingleProperty() {
   </div>
 </div>
 
-
+          {error && <p className="error">{error}</p>}
           <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
           onClick={handleBookClick}

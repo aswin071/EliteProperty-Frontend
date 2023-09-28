@@ -47,7 +47,7 @@ function UserRentBookings() {
         </div>
         <div className="w-3/4 p-4">
           <div className="container mx-auto mt-8">
-            <h1 className="text-2xl font-bold mb-4">User Sale Bookings</h1>
+            <h1 className="text-2xl font-bold mb-4">User Rent Bookings</h1>
             <table className="shared-table min-w-full">
               <thead className="bg-gray-200">
                 <tr>

@@ -12,8 +12,8 @@ function Logout() {
     const handleLogout = () => {
         dispatch(clearUser());
         toast.success('Logged out');
-        navigate('/login')
-        
+        localStorage.removeItem('user')   
+        navigate('/login')     
     };
   return (
     <div

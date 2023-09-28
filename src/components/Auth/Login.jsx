@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../../api/axiosConfig';
@@ -7,8 +7,13 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../../Images/logo.png'
+import jwt_decode from "jwt-decode";
 
 function Login() {
+   
+
+  //  var decoded = jwt_decode(token);  
+  //  console.log(`decoded`,decoded);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,7 +29,39 @@ function Login() {
 
     console.log('Stored Email in Redux:', emailAddress);
     console.log('User Details in Reduxxxxxxxxxxxxxxxxxxxxxxxxxxx:', user);
-    console.log('User Details in Reduxttttttttttttttttttttt:', refreshToken);
+    console.log('User Details token in Reduxttttttttttttttttttttt:', refreshToken);
+
+  // if(user){
+  //   try {
+  //   var decoded = jwt_decode(refreshToken);  
+  //   console.log(`decoded; --------------`,decoded);
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+   
+  //   useEffect(()=>{
+  //     const token= localStorage.getItem('user')
+  //     console.log(`token:` ,token)
+  //     try {
+  //     if(user && refreshToken ){
+  //       console.log('user:',user)
+  //     if(user.user_type="User"){
+  //        navigate('/')
+  //     }else if(user.user_type="Admin"){
+  //       navigate('/admin');  
+  //     }else if(user.user_type="Vender"){
+  //       navigate('/vendor');
+  //     }
+
+  //   }else{
+  //     navigate('/login')
+  //   }} catch (error) {
+  //       console.log(error);
+  //     }
+  //  })
+      
+
 
     const handleLogin = async () => {
         try {
@@ -43,12 +80,19 @@ function Login() {
                 dispatch(setTokenExpiry(token_expiry));
                 toast.success('Logged in successfully.');
                 if (user.user_type === "Admin") {
-                    navigate('/admin');
+                    // let type= user.user_type
+                    // localStorage.setItem('user',{refresh_token})
+                     navigate('/admin');      
                 } else if (user.user_type === "User") {
+                    // let type= user.user_type
+                    // console.log(`type:`,type);
+                    // localStorage.setItem('user',(type))
                     navigate('/');
                 } else if (user.user_type === "Vendor") {
                     if (user.is_profile) {
                         navigate('/vendor');
+                        // let type= user.user_type
+                        // localStorage.setItem('Vender',access_token,type)
                       } else {
                         navigate('/vendor/register');
                       }
@@ -64,26 +108,26 @@ function Login() {
     };
 
      // Check if the user is already authenticated, and if so, redirect
-  if (user) {
-    if (user.user_type === "Admin") {
-      navigate('/admin');
-    } else if (user.user_type === "User") {
-      navigate('/');
-    } else if (user.user_type === "Vendor") {
-      if (user.is_profile) {
-        navigate('/vendor');
-      } else {
-        navigate('/vendor/register');
-      }
-    }
+  // if (user) {
+  //   if (user.user_type === "Admin") {
+  //     navigate('/admin');
+  //   } else if (user.user_type === "User") {
+  //     navigate('/');
+  //   } else if (user.user_type === "Vendor") {
+  //     if (user.is_profile) {
+  //       navigate('/vendor');
+  //     } else {
+  //       navigate('/vendor/register');
+  //     }
+  //   }
 
-    // Return null to prevent rendering the login form
-    return null;
-  }
-  if (user) {
-    navigate('/');
-    return null; // Return null to prevent rendering the login form
-  }
+  //   // Return null to prevent rendering the login form
+  //   return null;
+  // }
+  // if (user) {
+  //   navigate('/');
+  //   return null; // Return null to prevent rendering the login form
+  // }
     
     
     return (
