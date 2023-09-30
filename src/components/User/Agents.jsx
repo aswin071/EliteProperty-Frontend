@@ -29,7 +29,7 @@ const user = useSelector((state) => state.user);
     <div>
 
         <NavbarDefault/>
-        <div className="mt-8 bg-gray-200">
+        <div className="bg-gray-200">
   <h2 className="mb-4 mt-5 text-4xl font-extrabold text-gray-900 dark:text-dark text-center">
     Our Team
   </h2>

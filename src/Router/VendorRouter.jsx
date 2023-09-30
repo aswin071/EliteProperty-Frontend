@@ -10,6 +10,8 @@ import { useSelector } from 'react-redux';
 import BookingDetails from '../components/Vendor/BookingDetails'
 import UserRentBookings from '../components/Vendor/UserRentBookings'
 import UserSaleBookings from '../components/Vendor/UserSaleBookings'
+import SaleProperty from '../components/Vendor/SaleProperty'
+import RentProperties from '../components/Vendor/RentProperties'
 
 
 
@@ -35,6 +37,8 @@ function VendorRouter() {
         <Route path="/property/booking-details" element={<BookingDetails />} />
         {/* <Route path="/rent/property/booking-details" element={<UserRentBookings />} />
         <Route path="/sale/property/booking-details" element={<UserSaleBookings />} /> */}
+        <Route path="/all-sale/properties" element={<SaleProperty />} />
+        <Route path="/all-rent/properties" element={<RentProperties />} />
         </>
        
         </Routes>

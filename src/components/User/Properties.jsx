@@ -49,7 +49,7 @@ function Properties() {
       <NavbarDefault />
       
 
-      <div className="mt-4 text-center">
+      <div className="mt-4 text-center bg-gray-200">
         <img src={property_img} alt="Description of the image" className="w-full" />
         <div className="absolute top-1/2 left-1/5 transform -translate-y-1/2 text-white p-4 font-bold text-lg">
           <h1 className="text-white-600 text-2xl font-semibold">
@@ -58,12 +58,13 @@ function Properties() {
         </div>
       </div>
 
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 bg-gray-200 ">
+      <div className="text-center mt-4 ">
         <h2 className="text-blue-500 text-2xl font-semibold">
           Explore Home with Us...
         </h2>
       </div>
-      <div className="text-center mt-4">
+      <div className="text-center mt-4 ">
         <input
           type="text"
           placeholder="Search by Location"
@@ -164,6 +165,7 @@ function Properties() {
 
 
       <Footer />
+    </div>
     </div>
   );
 }

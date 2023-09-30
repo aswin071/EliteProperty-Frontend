@@ -110,9 +110,9 @@ function SingleProperty() {
     <div>
       <NavbarDefault />
       
-     
+      <div className="mt-4  bg-gray-200">
       {property && (
-        <div className="container mx-auto p-6">
+        <div className="container mx-auto p-6 ">
           <div className="flex">
           <div className="w-1/2">
           <Carousel  className="w-full h-64 object-cover rounded-l-lg" >
@@ -285,6 +285,7 @@ function SingleProperty() {
         </div>
       )}
       <Footer />
+    </div>
     </div>
   );
 }

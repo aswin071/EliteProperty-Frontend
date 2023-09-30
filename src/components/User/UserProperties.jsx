@@ -31,7 +31,8 @@ function UserProperties() {
   };
 
   return (
-    <div className="container mx-auto p-6">
+    
+    <div className="container mx-auto p-6 "> 
       <h1 className="text-3xl font-bold mb-6">Your Bookings</h1>
       {properties.length === 0 ? (
         <div className="text-center">
@@ -57,12 +58,7 @@ function UserProperties() {
                 Check-out Date: {propertyData.booking.check_out_date}<br />
                 Current Status: {propertyData.booking.status}
               </p>
-              {/* <button
-                onClick={() => openVendorModal(propertyData.property.vendor)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 mt-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
-              >
-                View Vendor
-              </button> */}
+              
             </div>
           ))}
         </div>
@@ -76,6 +72,7 @@ function UserProperties() {
         />
       )}
     </div>
+    
     
    
   );

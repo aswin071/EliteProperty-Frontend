@@ -45,7 +45,7 @@ function UserProfile() {
   return (
     <div>
       <NavbarDefault/>
-      <div className="h-full p-8">
+      <div className="h-full  bg-gray-200">
       {profileData && (
        <>
       <div className="flex items-center justify-center">

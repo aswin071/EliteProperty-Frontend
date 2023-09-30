@@ -4,95 +4,181 @@ import api from '../../api/axiosConfig';
 import { Link } from 'react-router-dom';
 
 function PropertyListing() {
-  const [propertylist, setPropertylist] = useState([]); 
-  const [userSearchInput, setUserSearchInput] = useState('');
-  const [saleProperties, setSaleProperties] = useState([]);
-  const [rentProperties, setRentProperties] = useState([]);
+  // const [propertylist, setPropertylist] = useState([]); 
+  // const [userSearchInput, setUserSearchInput] = useState('');
+  // const [saleProperties, setSaleProperties] = useState([]);
+  // const [rentProperties, setRentProperties] = useState([]);
 
-  useEffect(() => {
-    async function fetchPropertyData() {
-      try {
-        const userResponse = await api.get('property/view-property/');
-        setPropertylist(userResponse.data);
-        console.log(userResponse.data)
-      } catch (error) {
-        console.error('Error fetching properties', error);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchPropertyData() {
+  //     try {
+  //       const userResponse = await api.get('property/view-property/');
+  //       setPropertylist(userResponse.data);
+  //       console.log(userResponse.data)
+  //     } catch (error) {
+  //       console.error('Error fetching properties', error);
+  //     }
+  //   }
 
-    fetchPropertyData();
-  }, []);
+  //   fetchPropertyData();
+  // }, []);
 
   
-  useEffect(() => {
-    const saleProps = propertylist.filter((property) => property.property_type === 'Sale');
-    const rentProps = propertylist.filter((property) => property.property_type === 'Rent');
-    setSaleProperties(saleProps);
-    setRentProperties(rentProps);
+  // useEffect(() => {
+  //   const saleProps = propertylist.filter((property) => property.property_type === 'Sale');
+  //   const rentProps = propertylist.filter((property) => property.property_type === 'Rent');
+  //   setSaleProperties(saleProps);
+  //   setRentProperties(rentProps);
     
-  }, [propertylist]);
+  // }, [propertylist]);
 
-  const handleStatusChange = async (propertyId, newStatus) => {
-    try {
-      // Make an API request to update the property status
-      await api.put(`vendors/update-status/${propertyId}/`, { status: newStatus });
+  // const handleStatusChange = async (propertyId, newStatus) => {
+  //   try {
+  //     // Make an API request to update the property status
+  //     await api.put(`vendors/update-status/${propertyId}/`, { status: newStatus });
       
-      // Update the local state to reflect the change
-      setPropertylist((prevState) => {
-        const updatedProperties = prevState.map((property) => {
-          if (property.id === propertyId) {
-            return { ...property, status: newStatus };
-          }
-          return property;
-        });
-        return updatedProperties;
-      });
+  //     // Update the local state to reflect the change
+  //     setPropertylist((prevState) => {
+  //       const updatedProperties = prevState.map((property) => {
+  //         if (property.id === propertyId) {
+  //           return { ...property, status: newStatus };
+  //         }
+  //         return property;
+  //       });
+  //       return updatedProperties;
+  //     });
       
-    } catch (error) {
-      console.error('Error updating property status', error);
-    }
-  };
+  //   } catch (error) {
+  //     console.error('Error updating property status', error);
+  //   }
+  // };
   
 
-  // Render a property card
-  const renderPropertyCard = (property) => (
-    <div key={property.id} className="bg-white rounded-lg overflow-hidden shadow-md">
-      <img
-        src={process.env.REACT_APP_API_BASE_URL + property.image1}
-        alt={property.title}
-        className="w-full h-48 object-cover"
-      />
-      <div className="p-4">
-        <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
-        <p className="text-gray-700 mb-2">Description: {property.description}</p>
-        <p className="text-gray-700 mb-2">Price: ${property.price}</p>
-        <p className="text-gray-700 mb-2">Location: {property.location}</p>
-        <p className="text-gray-700 mb-2">Property For: {property.property_type}</p>
-        <div className="mb-2">
-      <label htmlFor={`statusSelect_${property.id}`} className="block font-semibold mb-1">Status:</label>
-      <select
-        id={`statusSelect_${property.id}`}
-        value={property.status}
-        onChange={(e) => handleStatusChange(property.id, e.target.value)}
-        className="border rounded py-2 px-3 w-full"
-      >
-        <option value="Available">Available</option>
-        <option value="Reserved">Reserved</option>
-        <option value="Sold">Sold</option>
-      </select>
-    </div>
-      </div>
-    </div>
-  );
+  // // Render a property card
+  // const renderPropertyCard = (property) => (
+  //   <div key={property.id} className="bg-white rounded-lg overflow-hidden shadow-md">
+  //     <img
+  //       src={process.env.REACT_APP_API_BASE_URL + property.image1}
+  //       alt={property.title}
+  //       className="w-full h-48 object-cover"
+  //     />
+  //     <div className="p-4">
+  //       <h3 className="text-xl font-semibold mb-2">{property.title}</h3>
+  //       <p className="text-gray-700 mb-2">Description: {property.description}</p>
+  //       <p className="text-gray-700 mb-2">Price: ${property.price}</p>
+  //       <p className="text-gray-700 mb-2">Location: {property.location}</p>
+  //       <p className="text-gray-700 mb-2">Property For: {property.property_type}</p>
+  //       <div className="mb-2">
+  //     <label htmlFor={`statusSelect_${property.id}`} className="block font-semibold mb-1">Status:</label>
+  //     <select
+  //       id={`statusSelect_${property.id}`}
+  //       value={property.status}
+  //       onChange={(e) => handleStatusChange(property.id, e.target.value)}
+  //       className="border rounded py-2 px-3 w-full"
+  //     >
+  //       <option value="Available">Available</option>
+  //       <option value="Reserved">Reserved</option>
+  //       <option value="Sold">Sold</option>
+  //     </select>
+  //   </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
+    
     <div className="flex">
       <div className="w-1/4">
         <VendorSidebar />
       </div>
       <div className="w-3/4 p-4">
-        <div className="container mx-auto">
-          <h2 className="text-3xl font-bold mb-4">Your Properties</h2>
+      <div className="container w-full mt-5" style={{ maxWidth: '800px' }}>
+        <div class="container w-full">
+<div class="flex flex-col md:flex-row  justify-between items-center p-10 bg-indigo-800 text-white">
+    <div class="m-auto">
+      <div class="text-center">
+        <p></p>
+        <h2 class="font-bold text-2xl border border-black p-2 mb-4">Property For Sale</h2>
+
+
+      </div>
+      <div class="pt-2 flex justify-center gap-x-3">
+      
+      </div>
+    </div>
+
+    <div class="w-full md:w-6/12 mt-5">
+      <form class="w-full" noValidate>
+        <div class="flex flex-col items-center">
+          <div class=" w-full flex flex-col items-center space-y-2">
+          <Link to="/vendor/all-sale/properties">
+          <button
+                data-variant="flat"
+                class="w-48 bg-black rounded-lg transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-800 mt-2 flex-shrink-0"
+            >
+                <h2 class="lg:py-0.5 text-dark">View Properties</h2>
+            </button>
+            </Link>
+
+            <Link to="/vendor/add-property">
+            <button
+                data-variant="flat"
+                class="w-48 mt-5 bg-black rounded-lg transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-800 mt-2 flex-shrink-0"
+            >
+                <span class="lg:py-0.5">Add Property</span>
+            </button>
+            </Link>
+
+
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div className="container w-full mt-5" style={{ maxWidth: '800px' }}>
+<div class="flex flex-col md:flex-row justify-between items-center p-10 bg-indigo-800 text-white">
+    <div class="m-auto">
+      <div class="text-center">
+        <p></p>
+        <h2 class="font-bold text-2xl border border-black p-2 mb-4">Property For Rent</h2>
+
+      </div>
+      <div class="pt-2 flex justify-center gap-x-3">
+       
+      </div>
+    </div>
+
+    <div class="w-full md:w-6/12">
+      <form class="w-full" noValidate>
+        <div class="flex flex-col items-center">
+          <div class=" w-full flex flex-col items-center space-y-2">
+            <Link to='/vendor/all-rent/properties'>
+          <button
+                data-variant="flat"
+                class="w-48 bg-black rounded-lg transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-800 mt-2 flex-shrink-0"
+            >
+                <h2 class="lg:py-0.5 text-dark">View Properties</h2>
+            </button>
+            </Link>
+            <Link to="/vendor/add-property">
+            <button
+                data-variant="flat"
+                class="w-48 mt-5 bg-black rounded-lg transition ease-in-out duration-300 font-semibold font-body text-center justify-center border-0 border-transparent placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-4 md:py-3.5 lg:py-4 hover:text-white hover:bg-gray-800 mt-2 flex-shrink-0"
+            >
+                <span class="lg:py-0.5">Add Property</span>
+            </button>
+            </Link>
+
+
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+        
+          {/* <h2 className="text-3xl font-bold mb-4">Your Properties</h2>
           <div className="flex justify-between mb-4">
             <input
               type="text"
@@ -105,8 +191,8 @@ function PropertyListing() {
             <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
               Add Property
             </button>
-            </Link>
-          </div>
+            </Link> */}
+          {/* </div>
           <div>
             <h3 className="text-2xl font-bold">For Sale</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -127,8 +213,9 @@ function PropertyListing() {
                 .map((property) => renderPropertyCard(property))}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
+    </div>
     </div>
   );
 }
