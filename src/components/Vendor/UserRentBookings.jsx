@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../api/axiosConfig';
+import VendorSidebar from '../Layout/VendorSidebar';
 
 
 function UserRentBookings() {
@@ -43,7 +44,7 @@ function UserRentBookings() {
     return (
         <div className="flex">
         <div className="w-1/4">
-          
+          <VendorSidebar/>
         </div>
         <div className="w-3/4 p-4">
           <div className="container mx-auto mt-8">

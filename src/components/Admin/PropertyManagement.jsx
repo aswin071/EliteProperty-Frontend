@@ -45,11 +45,11 @@ function PropertyManagement() {
 
     return (
         <div className="flex">
-    {/* Sidebar */}
+    
     <Sidebar />
 
-    {/* Property Listing */}
-    <div className="w-full p-4">
+    
+    <div className="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
         <h1 className="text-2xl font-semibold mb-4">Property Management</h1>
 
         
