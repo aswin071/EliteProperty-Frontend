@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom';
 import { NavbarDefault } from '../Layout/Navbar';
 import api from '../../api/axiosConfig';
 import VendorModal from './VendorModal';
-import RequestedPropertyDetails from './RequestedPropertyDetails';
+import Modal from './Modal';
+import InvoicePDF from './InvoicePDF';
 
 function UserProperties() {
   const [properties, setProperties] = useState([]);
   const [isVendorModalOpen, setIsVendorModalOpen] = useState(false);
   const [selectedVendor, setSelectedVendor] = useState(null);
+  const [isInvoiceModalOpen, setIsInvoiceModalOpen] = useState(false);
+  const [selectedPropertyForInvoice, setSelectedPropertyForInvoice] = useState(null);
 
   useEffect(() => {
     api.get('/users/user-properties/')
@@ -29,7 +32,10 @@ function UserProperties() {
   const closeVendorModal = () => {
     setIsVendorModalOpen(false);
   };
-
+  const openInvoiceModal = (propertyData) => {
+    setSelectedPropertyForInvoice(propertyData); // Set the selected property
+    setIsInvoiceModalOpen(true); // Open the invoice modal
+  };
   return (
     
     <div className="container mx-auto p-6 "> 
@@ -58,7 +64,20 @@ function UserProperties() {
                 Check-out Date: {propertyData.booking.check_out_date}<br />
                 Current Status: {propertyData.booking.status}
               </p>
-              
+              {propertyData.booking.status === 'approved' && (
+  <div>
+    <p className="mt-4">
+      <a
+        href="#"
+        onClick={() => openInvoiceModal(propertyData)}
+        className="text-blue-500 underline text-lg"
+      >
+        Download Invoice (PDF)
+      </a>
+    </p>
+  </div>
+)}
+
             </div>
           ))}
         </div>
@@ -70,6 +89,11 @@ function UserProperties() {
           onRequestClose={closeVendorModal}
           vendor={selectedVendor}
         />
+      )}
+       {isInvoiceModalOpen && (
+        <Modal isOpen={isInvoiceModalOpen} onRequestClose={() => setIsInvoiceModalOpen(false)}>
+          <InvoicePDF propertyData={selectedPropertyForInvoice} />
+        </Modal>
       )}
     </div>
     

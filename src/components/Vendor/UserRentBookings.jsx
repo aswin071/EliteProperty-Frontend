@@ -19,27 +19,27 @@ function UserRentBookings() {
     }, []);
 
     const handleStatusChange = async (bookingId, newStatus) => {
-        try {
-          // Send a request to update the status to the server
-          const response = await api.patch(`/vendors/property-bookings/${bookingId}/`, {
-            status: newStatus,
+      try {
+          const response = await api.put(`vendors/update-payment-status/${bookingId}/`, {
+              status: newStatus,
           });
-    
+  
           if (response.status === 200) {
-            // Update the status locally in the propertyBookings state
-            setPropertyBookings((bookings) =>
-              bookings.map((booking) =>
-                booking.id === bookingId ? { ...booking, status: newStatus } : booking
-              )
-            );
-            console.log(`Status updated for booking ${bookingId} to ${newStatus}`);
+              // Update the status locally in the propertyBookings state
+              setBookings((bookings) =>
+                  bookings.map((booking) =>
+                      booking.id === bookingId ? { ...booking, status: newStatus } : booking
+                  )
+              );
+              console.log(`Status updated for booking ${bookingId} to ${newStatus}`);
           } else {
-            console.error(`Failed to update status for booking ${bookingId}`);
+              console.error(`Failed to update status for booking ${bookingId}`);
           }
-        } catch (error) {
+      } catch (error) {
           console.error(`Error updating status for booking ${bookingId}:`, error);
-        }
-      };
+      }
+  };
+  
 
     return (
         <div className="flex">

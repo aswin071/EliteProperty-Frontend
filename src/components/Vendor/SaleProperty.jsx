@@ -107,12 +107,12 @@ function SaleProperty() {
 
   return (
     <div className="flex">
-      <div className="w-1/4 bg-gradient-to-tr from-red-300 to-yellow-200">
+      <div className="w-1/4 bg-gradient-to-tr ">
         <VendorSidebar />
       </div>
-      <div className="w-3/4 bg-gradient-to-tr from-red-300 to-yellow-200">
+      <div className="w-3/4 bg-gradient-to-tr ">
       <div className="mb-4">
-              <label htmlFor="searchInput" className="block font-semibold mb-1">
+              <label htmlFor="searchInput" className="block font-semibold mt-5">
                 Search:
               </label>
               <input

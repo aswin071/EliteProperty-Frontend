@@ -50,12 +50,12 @@ function RentProperties() {
 
   return (
     <div className="flex">
-      <div className="w-1/4 bg-gradient-to-tr from-red-300 to-yellow-200">
+      <div className="w-1/4 bg-gradient-to-tr ">
         <VendorSidebar />
       </div>
-      <div className="w-3/4 bg-gradient-to-tr from-red-300 to-yellow-200">
+      <div className="w-3/4 bg-gradient-to-tr ">
       <div className="mb-4">
-              <label htmlFor="searchInput" className="block font-semibold mb-1">
+              <label htmlFor="searchInput" className="block font-semibold mt-5">
                 Search:
               </label>
               <input
@@ -67,7 +67,7 @@ function RentProperties() {
                 placeholder="Search by property title"
               />
             </div>
-        <div className="min-h-screen bg-gradient-to-tr from-red-300 to-yellow-200 flex justify-center items-center py-20">
+        <div className="min-h-screen bg-gradient-to-tr  flex justify-center items-center py-20">
           <div className="md:px-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 space-y-4 md:space-y-0">
             {rentProperties.map((property) => (
               <div key={property.id} className="max-w-sm bg-white px-6 pt-6 pb-2 rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
