@@ -22,7 +22,7 @@ function UserSaleBookings() {
   const handleStatusChange = async (bookingId, newStatus) => {
     try {
       // Send a request to update the status to the server
-      const response = await api.patch(`/vendors/property-bookings/${bookingId}/`, {
+      const response = await api.patch(`vendors/update-sale/payment-status/${bookingId}/`, {
         status: newStatus,
       });
 

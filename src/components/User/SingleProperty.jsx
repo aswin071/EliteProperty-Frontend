@@ -20,11 +20,13 @@ function SingleProperty() {
   const [vendorDetails, setVendorDetails] = useState({});
   const [isInterestSent, setIsInterestSent] = useState(false);
   const [selectedDates, setSelectedDates] = useState({ fromDate: null, toDate: null });
-  const [bookButtonMessage, setBookButtonMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
   const [error, setError] = useState('');
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState({});
  
 
   
@@ -78,29 +80,35 @@ function SingleProperty() {
   const handleBookClick = async () => {
     try {
       if (!checkInDate || !checkOutDate) {
+        setErrorMessage('Please select both check-in and check-out dates.');
         toast.error('Please select both check-in and check-out dates.');
         return;
       }
-  
+
       const response = await api.post('buyproperty/rent-booking/', {
         property_id: property.id,
         check_in_date: checkInDate,
         check_out_date: checkOutDate,
       });
-  
+
       if (response.status === 201) {
         setIsInterestSent(true);
+        setSuccessMessage('Property Booked successfully.');
         toast.success('Property Booked successfully.');
         window.location.href = `/property/rent/${property.id}`;
-      } else if (response.status === 400 || response.status === 500) {
-        
+      } else if (response.status === 400) {
         const data = await response.json();
-        setError(data.error_message);
+        setErrorMessage(data.message); 
+        console.log(data.message);
+        toast.error(data.message);
       } else {
-        toast.error('Dates are not avialable Please select another.');
+        setErrorMessage('Dates are not available. Please select another.');
+        toast.error('Dates are not available. Please select another.');
       }
     } catch (error) {
       console.error('Error:', error);
+      setErrorMessage('An error occurred');
+      toast.error('An error occurred');
     }
   };
   
@@ -170,7 +178,11 @@ function SingleProperty() {
               {property.property_type === 'Rent' && (
         <div>
       <div className="flex">
+      
   <div>
+  {successMessage && <p className="text-green-500">{successMessage}</p>}
+      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+  
     <label htmlFor="fromDate">Check In:</label>
     <input
       type="date"

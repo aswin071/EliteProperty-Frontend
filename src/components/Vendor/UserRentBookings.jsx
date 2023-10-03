@@ -20,7 +20,7 @@ function UserRentBookings() {
 
     const handleStatusChange = async (bookingId, newStatus) => {
       try {
-          const response = await api.put(`vendors/update-payment-status/${bookingId}/`, {
+          const response = await api.patch(`vendors/update-payment-status/${bookingId}/`, {
               status: newStatus,
           });
   
