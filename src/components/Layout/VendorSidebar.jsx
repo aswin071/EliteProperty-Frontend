@@ -14,15 +14,16 @@ function VendorSidebar() {
   const [profileData, setProfileData] = useState(null);
 
   useEffect(() => {
-    api.get('/vendors/vendor-profiles/')
+    api.get('/vendors/vendor-profile/')
         .then(response => {
+            console.log('Vendor Response:', response.data);
             setProfileData(response.data);
-            console.log(response.data)
         })
         .catch(error => {
             console.error('Error fetching profile data:', error);
         });
 }, []);
+
 
   const handleLogout = () => {
     dispatch(clearUser());
@@ -31,35 +32,41 @@ function VendorSidebar() {
     };
 
   return (
-    <>
-       <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-blue-500 from-cyan-500 to-blue-500 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
-        <div>
-            <div className="-mx-6 px-6 py-4">
-            <Link to="/vendor" title="home">
-                <div className="flex items-center justify-start">
-                <lord-icon
-                    src="https://cdn.lordicon.com/dycatgju.json"
-                    trigger="loop"
-                    delay="2000"
-                    colors="primary:#121331"
-                    style={{ width: '50px', height: '50px' }}
-                ></lord-icon>
-                <a className="font-extrabold text-2xl text-[#121331]">EliteProperty</a>
-                </div>
-            </Link>
+    <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-blue-500 from-cyan-500 to-blue-500 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+      <div>
+        <div className="-mx-6 px-6 py-4">
+          <Link to="/vendor" title="home">
+            <div className="flex items-center justify-start">
+              <lord-icon
+                src="https://cdn.lordicon.com/dycatgju.json"
+                trigger="loop"
+                delay="2000"
+                colors="primary:#121331"
+                style={{ width: '50px', height: '50px' }}
+              ></lord-icon>
+              <a className="font-extrabold text-2xl text-[#121331]">EliteProperty</a>
             </div>
-            {profileData && profileData.vendor && (
-                <div className="mt-2 text-center">
-                    <img
-                    src={process.env.REACT_APP_API_BASE_URL + profileData.profile_photo}
-                    alt="Vendor Profile"
-                    className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
-                    />
-                    <h6 className="mt-1 text-sm font-semibold text-black-700 lg:block">
-                    {profileData.vendor.first_name}
-                    </h6>
-                </div>
-                )}
+          </Link>
+        </div>
+        {profileData && (
+  <div className="mt-8 text-center">
+    <Link to='/vendor/profile'>
+      <img
+        src={process.env.REACT_APP_API_BASE_URL + profileData.profile_photo}
+        alt="Freelancer Profile"
+        className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
+      />
+    </Link>
+    <h6 className="hidden mt-3 text-base font-bold text-gray-700 lg:block">
+      {profileData.vendor.username} | Vendor 
+    </h6>
+    <Link className='font-bold text-xs text-gray-700 hover:text-gray-600 md:ml-2' to='/vendor/profile'>
+      View Profile
+    </Link>
+  </div>
+)}
+
+
 
 
             <ul className="space-y-2 tracking-wide mt-8">
@@ -136,7 +143,7 @@ function VendorSidebar() {
             </button>
         </div>
         </aside>
-    </>
+    
   )
 }
 

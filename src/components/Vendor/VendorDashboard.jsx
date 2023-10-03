@@ -3,22 +3,18 @@ import Logout from '../Auth/Logout';
 import { useSelector } from 'react-redux';
 import VendorProfile from './VendorProfile';
 import PropertyManagement from './PropertyManagement';
-import FreelancerSidebar from '../Layout/VendorSidebar';
+import VendorSidebar from '../Layout/VendorSidebar';
+
 
 
 function VendorDashboard() {
   const user = useSelector((state) => state.user);
-  //const isRegistered = user.is_registered;
-  const vendorId = user.vendorId; // Assuming the vendor ID is stored in user.vendorId
-
   
-  console.log('Vendor ID:', vendorId);
-
-  
+  const vendorId = user.vendorId; 
 
   return (
     <div>
-      <FreelancerSidebar/>
+     <VendorSidebar/>
 
 <div className="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
     <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
@@ -99,7 +95,7 @@ function VendorDashboard() {
                             <h3 className="text-3xl font-bold text-gray-700">$23,988</h3>
                             <div className="flex items-end gap-1 text-green-500">
                                 <svg className="w-3" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z" fill="currentColor"/>
+                                <path d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z" fill="currentColor"/>
                                 </svg>
                                 <span>2%</span>
                             </div>

@@ -12,6 +12,7 @@ import UserRentBookings from '../components/Vendor/UserRentBookings'
 import UserSaleBookings from '../components/Vendor/UserSaleBookings'
 import SaleProperty from '../components/Vendor/SaleProperty'
 import RentProperties from '../components/Vendor/RentProperties'
+import VendorProfile from '../components/Vendor/VendorProfile'
 
 
 
@@ -29,6 +30,7 @@ function VendorRouter() {
         
           <>
         <Route path="/" element={<VendorDashboard />} />
+        <Route path="/profile" element={<VendorProfile />} />
         <Route path="/register" element={<VendorRegistration />} />
         <Route path="/add-property" element={<PropertyManagement />} />
         <Route path="/properties" element={<PropertyListing />} />
