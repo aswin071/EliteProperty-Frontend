@@ -45,9 +45,11 @@ function RequestedPropertyDetails() {
   };
 
   return (
-    <div>
-    <h1 className="text-3xl font-bold mb-6">Your Bookings</h1>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="container mx-auto p-6 "> 
+      <h1 className="text-3xl font-bold mb-6">My Bookings</h1>
+      
+      
+      
       {propertyDetails.map((booking) => (
         <div key={booking.id} className="w-full p-4">
           <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
@@ -84,6 +86,7 @@ function RequestedPropertyDetails() {
           </div>
         </div>
       ))}
+      
 
       {/* Map through propertyBookings and display details separately */}
       {propertyBookings.map((booking) => (
@@ -113,7 +116,7 @@ function RequestedPropertyDetails() {
         </Modal>
       )}
     </div>
-  </div>
+
 );
 }
 

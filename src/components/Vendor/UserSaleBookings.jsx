@@ -4,11 +4,12 @@ import api from '../../api/axiosConfig';
 
 function UserSaleBookings() {
   const [propertyBookings, setPropertyBookings] = useState([]);
+   
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await api.get('/vendors/property-bookings/');
+        const response = await api.get('/vendors/sale/property-bookings/');
         setPropertyBookings(response.data);
         console.log(response.data);
       } catch (error) {

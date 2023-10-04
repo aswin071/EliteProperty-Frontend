@@ -39,7 +39,7 @@ function UserProperties() {
   return (
     
     <div className="container mx-auto p-6 "> 
-      <h1 className="text-3xl font-bold mb-6">Your Bookings</h1>
+      <h1 className="text-3xl font-bold mb-6">My Bookings</h1>
       {properties.length === 0 ? (
         <div className="text-center">
           <p className="text-gray-600 text-lg">No properties found.</p>

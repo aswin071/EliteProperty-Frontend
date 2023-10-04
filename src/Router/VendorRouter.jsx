@@ -13,6 +13,8 @@ import UserSaleBookings from '../components/Vendor/UserSaleBookings'
 import SaleProperty from '../components/Vendor/SaleProperty'
 import RentProperties from '../components/Vendor/RentProperties'
 import VendorProfile from '../components/Vendor/VendorProfile'
+import SalePropertyNetamount from '../components/Vendor/SalePropertyNetamount'
+import RentPropertyNetamount from '../components/Vendor/RentPropertyNetamount'
 
 
 
@@ -41,6 +43,8 @@ function VendorRouter() {
         <Route path="/sale/property/booking-details" element={<UserSaleBookings />} /> 
         <Route path="/all-sale/properties" element={<SaleProperty />} />
         <Route path="/all-rent/properties" element={<RentProperties />} />
+        <Route path="/all-sale/transaction/history" element={<SalePropertyNetamount />} />
+        <Route path="/all-rent/transaction/history" element={<RentPropertyNetamount />} />
         </>
        
         </Routes>

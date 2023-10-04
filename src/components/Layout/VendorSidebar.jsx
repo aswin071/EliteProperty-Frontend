@@ -50,13 +50,13 @@ function VendorSidebar() {
         </div>
         {profileData && (
   <div className="mt-8 text-center">
-    <Link to='/vendor/profile'>
+    
       <img
         src={process.env.REACT_APP_API_BASE_URL + profileData.profile_photo}
         alt="Freelancer Profile"
         className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
       />
-    </Link>
+    
     <h6 className="hidden mt-3 text-base font-bold text-gray-700 lg:block">
       {profileData.vendor.username} | Vendor 
     </h6>

@@ -29,7 +29,7 @@ function BookingDetails() {
                       View Sale Bookings
                     </button>
                   </Link>
-                  <Link to="/vendor/">
+                  <Link to="/vendor/all-sale/transaction/history">
                     <button
                       data-variant="flat"
                       className="w-48  bg-teal-800 rounded-full transition ease-in-out duration-300 font-semibold text-white hover:bg-gray-800 py-3 lg:py-4 hover:text-white mt-2 flex-shrink-0"
@@ -56,7 +56,7 @@ function BookingDetails() {
                       View Rent Bookings
                     </button>
                   </Link>
-                  <Link to="/vendor/add-property">
+                  <Link to="/vendor/all-rent/transaction/history">
                     <button
                       data-variant="flat"
                       className="w-48  bg-teal-800 rounded-full transition ease-in-out duration-300 font-semibold text-white hover:bg-gray-800 py-3 lg:py-4 hover:text-white mt-2 flex-shrink-0"

@@ -19,6 +19,7 @@
     "react-calendar": "^4.6.0",
     "react-dom": "^18.2.0",
     "react-image-crop": "^10.1.8",
+    "react-js-pagination": "^3.0.3",
     "react-modal": "^3.16.1",
     "react-pdf": "^7.4.0",
     "react-razorpay": "^2.0.1",

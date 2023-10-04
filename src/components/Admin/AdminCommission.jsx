@@ -24,8 +24,10 @@ function AdminCommission() {
 
   return (
     <div className="flex">
-      <Sidebar />
-      <div className="container mx-auto mt-12">
+      
+    <div class="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+    <Sidebar />
+    <div class="relative md:ml-64 bg-blueGray-100 w-full">
         <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -67,6 +69,7 @@ function AdminCommission() {
           </table>
         </div>
       </div>
+    </div>
     </div>
   );
 }
