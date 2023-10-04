@@ -88,7 +88,7 @@ function RequestedPropertyDetails() {
       ))}
       
 
-      {/* Map through propertyBookings and display details separately */}
+     
       {propertyBookings.map((booking) => (
         <div key={booking.userbooking.id}>
           <h5>Current Status: {booking.userbooking.status}</h5>
@@ -96,8 +96,8 @@ function RequestedPropertyDetails() {
         </div>
       ))}
 
-      {propertyBookings.some((item) => item.userbooking.status === 'approved') && (
-        <div>
+      {propertyBookings.some((item) => item.userbooking.status === 'approved' ) && (
+        
           <p className="mt-4">
             <a
               href="#"
@@ -107,7 +107,7 @@ function RequestedPropertyDetails() {
               Download Invoice (PDF)
             </a>
           </p>
-        </div>
+        
       )}
 
       {isInvoiceModalOpen && (

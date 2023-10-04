@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import BlockUnblockModal from '../Layout/BlockUnblockModal';
 import api from '../../api/axiosConfig';
-
 import Loading from '../Layout/Loading';
 import Sidebar from '../Layout/AdminSideBar';
 
-function AdminUserMangement() {
+function AdminUserManagement() {
   const [userProfiles, setUserProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [blockAction, setBlockAction] = useState(true);
   const [userSearchInput, setUserSearchInput] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const propertiesPerPage = 9; // Number of items to show per page
 
   useEffect(() => {
     async function fetchData() {
@@ -69,14 +70,35 @@ function AdminUserMangement() {
     profile.user.email.toLowerCase().includes(userSearchInput.toLowerCase())
   );
 
+  const totalPages = Math.ceil(filteredUserProfiles.length / propertiesPerPage);
+
+  // Calculate the start and end indices for the current page's data
+  const startIndex = (currentPage - 1) * propertiesPerPage;
+  const endIndex = startIndex + propertiesPerPage;
+
+  // Get the current page's data
+  const currentData = filteredUserProfiles.slice(startIndex, endIndex);
+
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   const handleUserSearchChange = (event) => {
     setUserSearchInput(event.target.value);
   };
 
   return (
-    <div className="flex ">
+    <div className="flex">
       <Sidebar />
-     
+
       <div className="ml-auto mb-6 lg:w-[75%] xl:w-[80%] 2xl:w-[85%]">
         <div className="sticky z-10 top-0 h-16 border-b bg-white lg:py-2.5">
           <div className="px-6 flex items-center justify-between space-x-4 2xl:container">
@@ -141,7 +163,7 @@ function AdminUserMangement() {
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredUserProfiles.map((profile) => (
+                  {currentData.map((profile) => (
                     <tr
                       key={profile.id}
                       className="bg-white border-b"
@@ -179,16 +201,47 @@ function AdminUserMangement() {
             </div>
           </div>
         )}
+
+<div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+          <div className="text-center mt-4">
+            <ul className="pagination flex space-x-2">
+            <li
+              onClick={handlePrevPage}
+              className={`cursor-pointer bg-gray-200 p-2 rounded-full 
+              ${currentPage === 1 ?'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              <span>&laquo;</span> 
+            </li>
+            {Array.from({ length: totalPages }, (_, i) => (
+              <li
+                key={i}
+                onClick={() => setCurrentPage(i + 1)}
+                className={`cursor-pointer rounded-full w-8 h-8 flex items-center justify-center
+                 ${i + 1 === currentPage ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-600 hover:bg-blue-300'}`}
+              >
+                {i + 1}
+              </li>
+            ))}
+            <li
+              onClick={handleNextPage}
+              className={`cursor-pointer bg-gray-200 p-2 rounded-full
+               ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+            >
+              <span className="text-gray-600">&raquo;</span>
+            </li>
+          </ul>
+        </div>
       </div>
-       {/* User Block/Unblock Modal */}
-       <BlockUnblockModal
+
+      {/* User Block/Unblock Modal */}
+      <BlockUnblockModal
         isOpen={isUserModalOpen}
         onRequestClose={closeUserModal}
         onConfirm={() => handleBlockUnblock(selectedUserId, true)}
       />
-
+    </div>
     </div>
   );
 }
 
-export default AdminUserMangement;
+export default AdminUserManagement;

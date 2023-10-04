@@ -91,7 +91,7 @@ function UserSaleBookings() {
                   >
                     <option value="pending">Pending</option>
                     <option value="approved">Approved</option>
-                    <option value="complete">Complete</option>
+                    
                     <option value="cancelled">Cancelled</option>
                   </select>
                 </td>

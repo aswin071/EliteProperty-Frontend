@@ -7,8 +7,8 @@ function SalePropertyNetamount() {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
   const [saleNetAmount, setSaleNetAmount] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); 
-  const itemsPerPage = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   useEffect(() => {
     async function fetchData() {
@@ -23,19 +23,29 @@ function SalePropertyNetamount() {
 
     fetchData();
   }, []);
+ // Calculate the total number of pages based on the data length and items per page
+ const totalPages = Math.ceil((data.deposit_details || []).length / itemsPerPage);
 
-  const totalItemsCount = data.deposit_details?.length || 0;
-  const pageCount = Math.ceil(totalItemsCount / itemsPerPage);
+ // Function to handle previous page
+ const handlePrevPage = () => {
+   if (currentPage > 1) {
+     setCurrentPage(currentPage - 1);
+   }
+ };
 
-  // Function to handle page change
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
-  // Get the current page of data
-  const offset = (currentPage - 1) * itemsPerPage;
-  const currentData = data.deposit_details?.slice(offset, offset + itemsPerPage);
+ const handleNextPage = () => {
+   if (currentPage < totalPages) {
+     setCurrentPage(currentPage + 1);
+   }
+ };
 
+ // Calculate the start and end indices for the current page's data
+ const startIndex = (currentPage - 1) * itemsPerPage;
+ const endIndex = startIndex + itemsPerPage;
+
+ // Get the current page's data
+ const currentData = (data.deposit_details || []).slice(startIndex, endIndex);
 
   return (
     <div className="flex">
@@ -138,26 +148,49 @@ function SalePropertyNetamount() {
             ))}
         </tbody>
       </table>
-      <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
-        <span className="text-xs xs:text-sm text-gray-900">
-          Showing 1 to 4 of 50 Entries
-        </span>
-        <div className="inline-flex mt-2 xs:mt-0">
-          <button className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-l">
-            Prev
-          </button>
-          <button className="text-sm bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-r">
-            Next
-          </button>
-        </div>
       </div>
+      <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between">
+<div className="text-center mt-4">
+            <ul className="pagination flex space-x-2">
+              <li
+                onClick={handlePrevPage}
+                className={`cursor-pointer bg-gray-200 p-2 rounded-full ${
+                  currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                <span className="text-gray-600">&laquo;</span>
+              </li>
+              {Array.from({ length: totalPages }, (_, i) => (
+                <li
+                  key={i}
+                  onClick={() => setCurrentPage(i + 1)}
+                  className={`cursor-pointer rounded-full w-8 h-8 flex items-center justify-center ${
+                    i + 1 === currentPage
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-gray-200 text-gray-600 hover:bg-blue-300'
+                  }`}
+                >
+                  {i + 1}
+                </li>
+              ))}
+              <li
+                onClick={handleNextPage}
+                className={`cursor-pointer bg-gray-200 p-2 rounded-full ${
+                  currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+              >
+                <span className="text-gray-600">&raquo;</span>
+              </li>
+            </ul>
+          </div>
+          </div>
     </div>
 </div>
 </div>
 </div>
 </div>
 </div>
-</div>
+
 
 
 

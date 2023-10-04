@@ -124,10 +124,10 @@ function Login() {
   //   // Return null to prevent rendering the login form
   //   return null;
   // }
-  // if (user) {
-  //   navigate('/');
-  //   return null; // Return null to prevent rendering the login form
-  // }
+  if (user) {
+    navigate('/');
+    return null; // Return null to prevent rendering the login form
+  }
     
     
     return (
