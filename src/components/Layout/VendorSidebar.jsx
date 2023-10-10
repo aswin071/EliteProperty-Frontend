@@ -32,8 +32,9 @@ function VendorSidebar() {
     };
 
   return (
-    <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-blue-500 from-cyan-500 to-blue-500 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
-      <div>
+    <aside className="ml-[-100%] fixed z-10 top-0 pb-3 h-screen overflow-y-scroll px-6 w-full flex flex-col justify-between h-screen border-r bg-blue-500 from-cyan-500 to-blue-500 transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+  <div >
+      <div className="">
         <div className="-mx-6 px-6 py-4">
           <Link to="/vendor" title="home">
             <div className="flex items-center justify-start">
@@ -103,6 +104,20 @@ function VendorSidebar() {
             </li>
             <li>
                 <NavLink
+                to="/vendor/chat"
+                className={`px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group ${
+                    location.pathname === '/vendor/chat' ? 'bg-black' : 'bg-transparent'
+                }`}
+                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path className="fill-current text-gray-300 group-hover:text-cyan-300" fillRule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clipRule="evenodd" />
+                    <path className="fill-current text-gray-600 group-hover:text-cyan-600" d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z" />
+                </svg>
+                <span className={`${location.pathname === '/vendor/chat' ? 'font-bold text-white' : '-mr-1 font-medium ' }`}>Chat</span>
+                </NavLink>
+            </li>
+            <li>
+                <NavLink
                 to="/vendor/property/booking-details"
                 className={`px-4 py-3 flex items-center space-x-4 rounded-md text-gray-600 group ${
                     location.pathname === "/vendor/property/booking-details" ? 'bg-black' : 'bg-transparent'
@@ -141,6 +156,7 @@ function VendorSidebar() {
             </svg>
             <span>Logout</span>
             </button>
+        </div>
         </div>
         </aside>
     

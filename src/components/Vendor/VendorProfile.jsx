@@ -59,7 +59,7 @@ function VendorProfile() {
                       <div className="text-gray-700">
                         <p className="mb-2">Status:</p>
                         <p className="mb-2">Year of Experience:</p>
-                        <p className="mb-2">Date of Birth:</p>
+                       
                         <p className="mb-2">Age:</p>
                         <p className="mb-2">City:</p>
                         <p className="mb-2">State:</p>

@@ -284,7 +284,9 @@ function SingleProperty() {
                   <p className="text-gray-700"> Email: {vendorDetails.email}</p>
                   <p className="text-gray-700"> Phone: {vendorDetails.phone_number}</p>
                   <p className="text-gray-700"> Year of Experience: {vendorProfile.year_of_experience}</p>
-
+                  <Link to='chat/' className="text-xl font-medium text-indigo-500">
+  Message
+</Link>
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
                   >

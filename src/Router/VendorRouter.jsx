@@ -15,6 +15,8 @@ import RentProperties from '../components/Vendor/RentProperties'
 import VendorProfile from '../components/Vendor/VendorProfile'
 import SalePropertyNetamount from '../components/Vendor/SalePropertyNetamount'
 import RentPropertyNetamount from '../components/Vendor/RentPropertyNetamount'
+import VendorChat from '../components/Vendor/VendorChat'
+import NotFound404 from '../components/Layout/NotFound404'
 
 
 
@@ -45,6 +47,8 @@ function VendorRouter() {
         <Route path="/all-rent/properties" element={<RentProperties />} />
         <Route path="/all-sale/transaction/history" element={<SalePropertyNetamount />} />
         <Route path="/all-rent/transaction/history" element={<RentPropertyNetamount />} />
+        <Route path="/chat" element={<VendorChat />} />
+        <Route path="*" element={<NotFound404 />} />
         </>
        
         </Routes>

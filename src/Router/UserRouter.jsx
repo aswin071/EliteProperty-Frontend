@@ -18,6 +18,8 @@ import CheckoutForRentProperty from '../components/User/CheckoutForRentProperty'
 import UserProperties from '../components/User/UserProperties';
 import UserBookings from '../components/User/UserBookings';
 import ProtectedRoute from '../ProtectedRoute';
+import Chat from '../components/Chat/Chat';
+import NotFound404 from '../components/Layout/NotFound404';
 
 function UserRouter() {
   const user = useSelector((state) => state.user);
@@ -46,6 +48,8 @@ function UserRouter() {
       <Route path="/property/rent/:id" element={<CheckoutForRentProperty />} />
       <Route path="" element={<UserProperties />} />
       <Route path="/my-bookings" element={<UserBookings />} />
+      <Route path="/chat" element={<Chat/>} />
+      <Route path="*" element={<NotFound404/>} />
     </Routes>
   );
 }

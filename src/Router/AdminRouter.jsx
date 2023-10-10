@@ -7,6 +7,7 @@ import AdminUserMangement from '../components/Admin/AdminUserMangement'
 import PropertyManagement from '../components/Admin/PropertyManagement'
 import { useSelector } from 'react-redux';
 import AdminCommission from '../components/Admin/AdminCommission'
+import NotFound404 from '../components/Layout/NotFound404'
 
 
 function AdminRouter() {
@@ -22,6 +23,7 @@ function AdminRouter() {
         <Route path='/eliteproperty-user' element={<AdminUserMangement/>} />
         <Route path='/eliteproperty-property' element={<PropertyManagement/>} />
         <Route path='/commission-view' element={<AdminCommission/>} />
+        <Route path="*" element={<NotFound404 />} />
         
         </Routes>
   )

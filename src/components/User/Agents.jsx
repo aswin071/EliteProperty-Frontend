@@ -3,6 +3,7 @@ import { NavbarDefault } from '../Layout/Navbar'
 import api from '../../api/axiosConfig';
 import { useSelector } from 'react-redux';
 import { Footer } from '../Layout/Footer';
+import { Link } from '@react-pdf/renderer';
 
 
 
@@ -56,8 +57,18 @@ const user = useSelector((state) => state.user);
             <p className="mt-2 text-gray-600">Years of Experience: {profile.year_of_experience}</p>
             <p className="text-gray-600">Specialization: {profile.specialization}</p>
             <p className="text-gray-600">Description: {profile.description}</p>
-            {/* Add more vendor details here */}
+            
           </div>
+          
+          <div className="flex justify-end mt-4">
+          
+          <Link to={`/chat/${profile.vendor.id}`} className="text-xl font-medium text-indigo-500">
+  Message
+</Link>
+
+        
+          </div>
+          
           <div className="flex justify-end mt-4">
             <a href={profile.contactLink} className="text-xl font-medium text-indigo-500">
               Contact {profile.name}
