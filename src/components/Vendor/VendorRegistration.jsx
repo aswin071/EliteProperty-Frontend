@@ -124,18 +124,7 @@ export function VendorRegistration() {
                             </p>
                         </div>
                         <div className="flex flex-col max-w-md space-y-5">
-                            {/* <select
-                                value={userLevel}
-                                onChange={(e) => setSpecialization(e.target.value)}
-                                className={`flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg ${
-                                    userLevel ? 'font-semibold' : 'font-normal'
-                                } ${userLevel === '' ? 'text-[#9ca3af]' : 'text-black'}`}
-                            >
-                                <option value="">Select Your Level</option>
-                                <option value="fresher">Fresher</option>
-                                <option value="intermediate">Intermediate</option>
-                                <option value="professional">Professional</option>
-                            </select> */}
+                           
                              <input
                                 type="text"
                                 placeholder="Specialization"
@@ -152,20 +141,6 @@ export function VendorRegistration() {
                                 className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
                             />
 
-                            {/* <textarea
-                                placeholder="About"
-                                value={about}
-                                onChange={(e) => setAbout(e.target.value)}
-                                className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
-                                rows={3}
-                            /> */}
-
-                            {/* <input
-                                type="date"
-                                value={date_of_birth}
-                                onChange={(e) => setDateOfBirth(e.target.value)}
-                                className="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal"
-                            /> */}
 
                             <div className="flex">
                                 <div className="flex-1 pr-2">

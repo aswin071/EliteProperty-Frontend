@@ -13,17 +13,17 @@ function CheckoutForRentProperty() {
     const [checkInDate, setCheckInDate] = useState(null);
     const [checkOutDate, setCheckOutDate] = useState(null);
     const [error, setError] = useState(null);
-    const [isLoading, setIsLoading] = useState(true); // Add loading state
+    const [isLoading, setIsLoading] = useState(true); 
 
     useEffect(() => {
         async function fetchProperty() {
             try {
                 const response = await api.get(`/users/rent/book/property/${id}/`);
-                console.log('Response Data:', response.data);
+                
 
                 if (response.data.propertyData) {
-                    const propertyData = response.data.propertyData[0]; // Extract the first item
-                    console.log('Property Data:', propertyData);
+                    const propertyData = response.data.propertyData[0]; 
+                    
 
                     setPropertyData(propertyData);
                     setPropertyId(propertyData.property.id);
@@ -33,9 +33,9 @@ function CheckoutForRentProperty() {
                     setIsLoading(false); // Data is loaded
                 }
             } catch (error) {
-                console.error('Error fetching property details:', error);
-                setIsLoading(false); // Handle error and set loading to false
-                setError('Error fetching property details.'); // Set an error message
+                
+                setIsLoading(false); 
+                setError('Error fetching property details.'); 
             }
         }
 
@@ -52,11 +52,7 @@ function CheckoutForRentProperty() {
                     check_out_date: checkOutDate,
                 });
 
-                console.log('Rent Amount:', rentamount);
-                console.log('Check-in Date:', checkInDate);
-                console.log('Check-out Date:', checkOutDate);
-                console.log('Payment Response:', response.data.order_response);
-                console.log('HTTP Status:', response.status);
+ 
 
                 if (response.status === 201) {
                     initPayment(response.data.order_response);
@@ -71,7 +67,7 @@ function CheckoutForRentProperty() {
     };
 
     const initPayment = (order) => {
-        console.log(order);
+        
         var options = {
             key: "rzp_test_mQPTW9W3qUgwIE",
             currency: "INR",

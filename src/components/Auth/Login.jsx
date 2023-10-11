@@ -12,8 +12,7 @@ import jwt_decode from "jwt-decode";
 function Login() {
    
 
-  //  var decoded = jwt_decode(token);  
-  //  console.log(`decoded`,decoded);
+  
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -27,40 +26,9 @@ function Login() {
     const refreshToken = useSelector(state => state.refreshToken);
     const accessToken = useSelector(state => state.accessToken);
 
-    console.log('Stored Email in Redux:', emailAddress);
-    console.log('User Details in Reduxxxxxxxxxxxxxxxxxxxxxxxxxxx:', user);
-    console.log('User Details token in Reduxttttttttttttttttttttt:', refreshToken);
+  
 
-  // if(user){
-  //   try {
-  //   var decoded = jwt_decode(refreshToken);  
-  //   console.log(`decoded; --------------`,decoded);
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-   
-  //   useEffect(()=>{
-  //     const token= localStorage.getItem('user')
-  //     console.log(`token:` ,token)
-  //     try {
-  //     if(user && refreshToken ){
-  //       console.log('user:',user)
-  //     if(user.user_type="User"){
-  //        navigate('/')
-  //     }else if(user.user_type="Admin"){
-  //       navigate('/admin');  
-  //     }else if(user.user_type="Vender"){
-  //       navigate('/vendor');
-  //     }
-
-  //   }else{
-  //     navigate('/login')
-  //   }} catch (error) {
-  //       console.log(error);
-  //     }
-  //  })
-      
+ 
 
 
     const handleLogin = async () => {
@@ -69,7 +37,7 @@ function Login() {
                 email: email,
                 password: password,
             });
-            console.log('API Response Data:', response.data);
+            
     
             if (response.status === 200) {
                 const { user, access_token, refresh_token, token_expiry } = response.data;
@@ -80,19 +48,15 @@ function Login() {
                 dispatch(setTokenExpiry(token_expiry));
                 toast.success('Logged in successfully.');
                 if (user.user_type === "Admin") {
-                    // let type= user.user_type
-                    // localStorage.setItem('user',{refresh_token})
+                    
                      navigate('/admin');      
                 } else if (user.user_type === "User") {
-                    // let type= user.user_type
-                    // console.log(`type:`,type);
-                    // localStorage.setItem('user',(type))
+                    
                     navigate('/');
                 } else if (user.user_type === "Vendor") {
                     if (user.is_profile) {
                         navigate('/vendor');
-                        // let type= user.user_type
-                        // localStorage.setItem('Vender',access_token,type)
+                        
                       } else {
                         navigate('/vendor/register');
                       }
@@ -102,33 +66,12 @@ function Login() {
                 toast.error('Login failed. Please check your credentials.');
             }
         } catch (error) {
-            console.error('Login Error:', error);
+            
             toast.error('An error occurred during login.');
         }
     };
 
-     // Check if the user is already authenticated, and if so, redirect
-  // if (user) {
-  //   if (user.user_type === "Admin") {
-  //     navigate('/admin');
-  //   } else if (user.user_type === "User") {
-  //     navigate('/');
-  //   } else if (user.user_type === "Vendor") {
-  //     if (user.is_profile) {
-  //       navigate('/vendor');
-  //     } else {
-  //       navigate('/vendor/register');
-  //     }
-  //   }
-
-  //   // Return null to prevent rendering the login form
-  //   return null;
-  // }
-  // if (user) {
-  //   navigate('/');
-  //   return null; // Return null to prevent rendering the login form
-  // }
-    
+  
     
     return (
         <section className="bg-gray-50 dark:bg-gray-900">

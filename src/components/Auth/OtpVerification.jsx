@@ -43,7 +43,7 @@ const OtpVerification = () => {
             setVerificationStatus('OTP verification failed');
           }
         } catch (error) {
-          console.error('OTP Verification Error:', error);
+          
           toast.error('An error occurred during OTP verification');
         }
       };

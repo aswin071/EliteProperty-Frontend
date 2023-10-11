@@ -131,13 +131,7 @@ const InvoicePDF = ({ propertyData }) => {
               <Text style={styles.value}>{vendor.vendor_details.phone_number}</Text>
             </View>
             
-            {/* <View style={styles.section}>
-              <Text style={styles.subHeader}>User Details</Text>
-              <Text style={styles.label}>Name:</Text>
-              <Text style={styles.value}>{user.user_details.first_name}</Text>
-              <Text style={styles.label}>Email:</Text>
-              <Text style={styles.value}>{user.user_details.email}</Text>
-            </View> */}
+            
             
             <Text style={styles.footer}>Thank you for your business!</Text>
           </View>

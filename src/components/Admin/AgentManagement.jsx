@@ -98,23 +98,7 @@ function AdminVendorManagement() {
   };
 
   
-  // const handleAcceptVendor = (vendor_id) => {
-  //   console.log('Vendor id:', vendor_id);
-  //   const endpoint = `admin/vendor/approve/${vendor_id}/`;
-  
-  //   api
-  //     .post(endpoint)
-  //     .then((response) => {
-  //       // Handle success (e.g., show a success message)
-  //       console.log('Vendor registration response:', response);
-  
-  //       // Update your state or perform other actions as needed
-  //     })
-  //     .catch((error) => {
-  //       // Handle error (e.g., show an error message)
-  //       console.error('Error approving registration:', error);
-  //     });
-  // };
+ 
   const handleAcceptVendor = (vendorId) => {
     console.log('Vendor id:', vendorId); // Log the ID before making the API request
   

@@ -233,7 +233,7 @@ function AdminUserManagement() {
         </div>
       </div>
 
-      {/* User Block/Unblock Modal */}
+     
       <BlockUnblockModal
         isOpen={isUserModalOpen}
         onRequestClose={closeUserModal}

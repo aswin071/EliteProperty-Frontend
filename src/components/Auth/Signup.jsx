@@ -124,17 +124,6 @@ const Signup = () => {
         user_type: userType,
       });
   
-      console.log('Request Payload:', {
-        first_name: firstName,
-        last_name: lastName,
-        username: userName,
-        email: email,
-        phone_number: phone,
-        password: password,
-        user_type: userType,
-      });
-  
-      console.log('Response:', response.data);
   
       if (response.status === 201) {
         dispatch(setUser(response.data));
@@ -146,7 +135,7 @@ const Signup = () => {
         toast.error("Error occurred! Please check your inputs");
       }
     } catch (error) {
-      console.error('Signup Error:', error);
+      
       if (error.response.data.error) {
         toast.error(error.response.data.error);
       } else {
@@ -261,16 +250,7 @@ const Signup = () => {
                     <div className="mt-2 text-center">
                         {allFieldsFilled ? "" :<p className="text-s text-red-500">All fields are required</p>}
                     </div>
-                    {/* <div className="flex justify-center items-center">
-                        <span className="w-full border border-black"></span>
-                        <span className="px-4">Or</span>
-                        <span className="w-full border border-black"></span>
-                    </div>  
-                    <button className="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black relative">
-                        <span className="absolute left-4">
-                        </span>
-                        <span>Sign in with Google</span>
-                    </button> */}
+                   
                 </div>
             </div>
         </div>

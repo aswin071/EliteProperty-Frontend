@@ -10,18 +10,18 @@ function PropertyManagement() {
   const [approveProperty, setApproveProperty] = useState([]);
   const [propertyApprovalStatus, setPropertyApprovalStatus] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Adjust the number of items to show per page
+  const itemsPerPage = 5; 
 
   useEffect(() => {
     async function fetchPropertyData() {
       try {
         setLoading(true);
         const userResponse = await api.get('admin/properties/');
-        console.log('Property Data:', userResponse.data); // Log fetched data
+         
         setProperties(userResponse.data);
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching properties', error);
+        
         setLoading(false);
       }
     }
@@ -30,47 +30,47 @@ function PropertyManagement() {
   }, []);
 
   const handlePublishUnpublish = (propId) => {
-    console.log('Property ID:', propId);
+    
     const endpoint = `admin/property/approve/${propId}/`;
 
     api
       .post(endpoint)
       .then((response) => {
-        console.log('Property Approved:', response.data);
+        
         setApproveProperty([...approveProperty, propId]);
       })
       .catch((error) => {
-        console.error('Error approving property:', error);
+        
       });
   };
 
-  // Filter the properties based on userSearchInput
+  
   const filteredProperties = properties.filter((property) =>
     property.title.toLowerCase().includes(userSearchInput.toLowerCase())
   );
 
-  // Calculate the total number of pages based on the filtered data and items per page
+  
   const totalPages = Math.ceil(filteredProperties.length / itemsPerPage);
 
-  // Function to handle previous page
+ 
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
-  // Function to handle next page
+  
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
     }
   };
 
-  // Calculate the start and end indices for the current page's data
+  
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
-  // Get the current page's data
+  
   const currentData = filteredProperties.slice(startIndex, endIndex);
 
   return (
@@ -107,7 +107,7 @@ function PropertyManagement() {
                         className="h-12 w-12 rounded-full"
                         src={
                           process.env.REACT_APP_API_BASE_URL + property.image1
-                        } // Replace with the property image URL
+                        } 
                         alt={property.title}
                       />
                     </div>

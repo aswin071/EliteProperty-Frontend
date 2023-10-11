@@ -111,25 +111,4 @@ function UserRentBookings() {
     export default UserRentBookings;
 
 
-    // {bookings.map((booking) => (
-    //     <tr key={booking.id}>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.user_details.username}</td>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.user_details.email}</td>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.property_details.property_title}</td>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.rent_amount}</td>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.check_in_date}</td>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.check_out_date}</td>
-    //       <td className="px-6 py-4 whitespace-nowrap">{booking.status}</td>
-    //     </tr>
-    //   ))}
-
-
-    //   <tr>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property Name</th>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Check-In Date</th>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Check-Out Date</th>
-    //   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-    // </tr>
+    

@@ -97,7 +97,7 @@ const Chat = () => {
 
   return (
     <div className="flex h-screen rounded-md bg-gray-200">
-      {/* Chat sidebar */}
+   
       <div className="flex flex-col bg-gray-200 h-screen w-1/4 border-r-2 border-gray-300">
         <h2 className="text-xl font-bold p-4 bg-gray-700 text-white">Chat</h2>
         <ul className="flex-grow overflow-y-auto">
@@ -115,17 +115,17 @@ const Chat = () => {
                 }}
               >
                 <div className="flex-shrink-0 mr-3 mt-1">
-                  {/* <Avatar
+                  <Avatar
                     src={avatar}
                     alt="User Avatar"
                     size="md"
                     className="rounded-full w-12 h-12 object-cover"
-                  /> */}
+                  />
                 </div>
                 <div className="flex-grow">
                   <h3 className="text-start ms-3 text-lg font-semibold">{user.first_name}</h3>
                 </div>
-                {/* You can add online/offline status indicators here */}
+               
               </li>
             ))
           ) : (
@@ -134,16 +134,16 @@ const Chat = () => {
         </ul>
       </div>
 
-      {/* Chat component */}
+      
       <div className="flex-grow">
         <div className="flex flex-col h-screen">
-          {/* Chat header */}
+          
           <div className="py-4 px-6 bg-gray-700 text-white">
             <h2 className="text-xl font-bold">
               {recipient ? `Chat with ${recipient.first_name}` : 'Select a recipient'}
             </h2>
           </div>
-          {/* Chat messages */}
+          
           <div className="flex-grow p-6 overflow-y-auto">
             {messages.length > 0 ? (
               messages.map((message, index) => (
