@@ -216,11 +216,12 @@ function AdminVendorManagement() {
                       className="bg-white border-b  "
                     >
                       <td className="flex px-3 py-2 md:px-6 md:py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        <img
-                          src={process.env.REACT_APP_API_BASE_URL + profile.profile_photo}
-                          className="w-24 h-24  border border-white mr-3"
-                          alt={profile.vendor.username}
-                        />
+                      <img
+  src={profile.profile_photo}
+  className="w-24 h-24 border border-white mr-3"
+  alt={profile.vendor.username}
+/>
+
                        <div className='mt-5 overflow-hidden '>
                                 <p className="truncate text-black">{profile.vendor.username}</p>
                                 <p className="truncate text-black">{profile.id}</p>

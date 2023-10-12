@@ -55,7 +55,7 @@ function RequestedPropertyDetails() {
           <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
             <img
               className="h-48 w-full object-cover"
-              src={process.env.REACT_APP_API_BASE_URL + booking.property.image1}
+              src={ booking.property.image1}
               alt="Property"
             />
 

@@ -55,7 +55,7 @@ function PropertyInquiries() {
                   <tr key={property.id}>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <img
-                        src={process.env.REACT_APP_API_BASE_URL + property.image1}
+                        src={ property.image1}
                         alt={property.title}
                         className="w-16 h-16 object-cover rounded-full"
                       />

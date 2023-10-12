@@ -124,7 +124,7 @@ function CheckoutForRentProperty() {
                             <h2 className="text-xl font-semibold">Property Details</h2>
                             <h3 className="text-lg font-medium mb-2">{propertyData.property.title}</h3>
                             <img
-                                src={process.env.REACT_APP_API_BASE_URL + propertyData.property.image1}
+                                src={ propertyData.property.image1}
                                 alt="Property Image"
                                 className="w-full h-64 object-cover rounded-lg mb-4"
                             />

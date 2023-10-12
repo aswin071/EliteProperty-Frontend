@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
                   <Text style={styles.label}>Property Title:</Text>
                   <Text style={styles.value}>{booking.property.title}</Text>
                   <Image
-                    src={process.env.REACT_APP_API_BASE_URL + booking.property.image1}
+                    src={ booking.property.image1}
                     style={styles.propertyImage}
                   />
                   <Text style={styles.label}>Address:</Text>

@@ -106,7 +106,7 @@ function PropertyPayment() {
                         
                         {/* Property image */}
                         <img
-                            src={process.env.REACT_APP_API_BASE_URL + propertyData.property.image1}
+                            src={ propertyData.property.image1}
                             alt="Property Image"
                             className="w-full h-64 object-cover rounded-lg mb-4"
                         />

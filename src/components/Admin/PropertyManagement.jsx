@@ -106,7 +106,7 @@ function PropertyManagement() {
                       <img
                         className="h-12 w-12 rounded-full"
                         src={
-                          process.env.REACT_APP_API_BASE_URL + property.image1
+                           property.image1
                         } 
                         alt={property.title}
                       />

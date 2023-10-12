@@ -126,27 +126,27 @@ function SingleProperty() {
           <Carousel  className="w-full h-64 object-cover rounded-l-lg" >
       <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image1}
+        src={ property.image1}
         className="w-full h-64 object-cover rounded-l-lg"
       />
       <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image2}
+        src={ property.image2}
         className="w-full h-64 object-cover rounded-l-lg"
       />
       <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image3}
+        src={ property.image3}
         className="w-full h-64 object-cover rounded-l-lg"
       />
       <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image2}
+        src={ property.image2}
         className="w-full h-64 object-cover rounded-l-lg"
       />
       <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image1}
+        src={ property.image1}
         className="w-full h-64 object-cover rounded-l-lg"
       />
     </Carousel>
@@ -157,12 +157,12 @@ function SingleProperty() {
              <Carousel>
              <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image2}
+        src={ property.image2}
         className="w-full h-64 object-cover rounded-l-lg"
       />
         <img
         alt={property.title}
-        src={process.env.REACT_APP_API_BASE_URL + property.image3}
+        src={ property.image3}
         className="w-full h-64 object-cover rounded-l-lg"
       />
 
@@ -276,7 +276,7 @@ function SingleProperty() {
                 <div className="p-4">
                   <h2 className="text-xl font-semibold text-gray-800">Vendor Details</h2>
                   <img
-                    src={process.env.REACT_APP_API_BASE_URL + vendorProfile.profile_photo}
+                    src={ vendorProfile.profile_photo}
                     alt="Vendor Profile"
                     className="w-20 h-20 rounded-full mx-auto"
                   />

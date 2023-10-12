@@ -55,7 +55,7 @@ function SaleProperty() {
       <div className="relative">
         <img
           className="w-full rounded-xl"
-          src={process.env.REACT_APP_API_BASE_URL + property.image1}
+          src={ property.image1}
           alt={property.title}
           style={{ maxHeight: '200px' }}
         />

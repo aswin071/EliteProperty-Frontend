@@ -48,7 +48,7 @@ const user = useSelector((state) => state.user);
           <div className="flex justify-center md:justify-end -mt-16">
             <img
               className="w-20 h-20 object-cover rounded-full border-2 border-indigo-500"
-              src={process.env.REACT_APP_API_BASE_URL + profile.profile_photo}
+              src={ profile.profile_photo}
               alt={profile.name}
             />
           </div>

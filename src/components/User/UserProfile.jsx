@@ -56,11 +56,12 @@ function UserProfile() {
   <div className="w-full lg:w-2/3">
     <div className="bg-white p-4 rounded-lg shadow-xl">
       <div className="flex items-center justify-center">
-        <img
-          src={process.env.REACT_APP_API_BASE_URL + profileData.profile_photo}
-          className="w-40 h-40 border-4 border-white rounded-full object-cover"
-          alt="User Profile"
-        />
+      <img
+  src={profileData.profile_photo}
+  className="w-40 h-40 border-4 border-white rounded-full object-cover"
+  alt="User Profile"
+/>
+
       </div>
       <div className="flex flex-col items-center mt-4">
         <p className="text-2xl">{user.username}</p>

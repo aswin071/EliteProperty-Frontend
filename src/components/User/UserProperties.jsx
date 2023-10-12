@@ -52,7 +52,7 @@ function UserProperties() {
           {properties.map((propertyData) => (
             <div key={propertyData.booking.id} className="border p-4 rounded-lg shadow-lg relative">
               <img
-                src={process.env.REACT_APP_API_BASE_URL + propertyData.property.image1}
+                src={ propertyData.property.image1}
                 alt={propertyData.property.title}
                 className="w-full h-64 object-cover rounded-t-lg mb-4"
               />

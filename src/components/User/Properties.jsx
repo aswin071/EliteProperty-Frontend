@@ -109,7 +109,7 @@ function Properties() {
  key={property.id} className="max-w-xs relative rounded overflow-hidden shadow-lg hover:shadow-xl">
         <img
           className="w-full h-40 transition-transform duration-300 transform hover:scale-105"
-          src={process.env.REACT_APP_API_BASE_URL + property.image1}
+          src={ property.image1}
           alt={`Property Image - ${property.title}`}
         />
         <div className="absolute top-2 left-2 rounded-full bg-blue-600 py-1 px-2 text-xs font-medium text-white">

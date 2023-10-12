@@ -75,7 +75,7 @@ function RentProperties() {
                 <div className="relative">
                   <img
                     className="w-full rounded-xl"
-                    src={process.env.REACT_APP_API_BASE_URL + property.image1}
+                    src={ property.image1}
                     alt={property.title}
                   />
                   <p className="absolute top-0 bg-yellow-300 text-gray-800 font-semibold py-1 px-3 rounded-br-lg rounded-tl-lg">

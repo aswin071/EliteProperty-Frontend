@@ -91,7 +91,7 @@ const InvoicePDF = ({ propertyData }) => {
               <Text style={styles.label}>Property Title:</Text>
               <Text style={styles.value}>{property.title}</Text>
               <Image
-                src={process.env.REACT_APP_API_BASE_URL + propertyData.property.image1}
+                src={ propertyData.property.image1}
                 style={styles.propertyImage}
               />
               <Text style={styles.label}>Address:</Text>
