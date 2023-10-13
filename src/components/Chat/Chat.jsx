@@ -21,7 +21,7 @@ const Chat = () => {
   useEffect(() => {
     if (roomId) {
       // Establish a WebSocket connection
-      socketRef.current = new WebSocket(`ws://localhost:8000/ws/chat/${senderId}/${recipientId}/`);
+      socketRef.current = new WebSocket(`ws://elite-property.vercel.app/ws/chat/${senderId}/${recipientId}/`);
 
       // Handle incoming WebSocket messages
       socketRef.current.onmessage = (event) => {
