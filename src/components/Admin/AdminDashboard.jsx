@@ -1,9 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Sidebar from '../Layout/AdminSideBar';
+import api from '../../api/axiosConfig';
 
 
 
 function AdminDashboard() {
+
+   const [data, setData] = useState({});
+  
+   useEffect(() => {
+      async function fetchData() {
+        try {
+          const response = await api.get('/admin/dashboard/');
+          setData(response.data);
+          console.log('transaction', response.data);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }
+  
+      fetchData();
+    }, []);
   return (
     
     
@@ -11,27 +28,10 @@ function AdminDashboard() {
       
       <div class="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
       <Sidebar />
-      <div class="relative md:ml-64 bg-blueGray-100 w-full">
-       <nav class="absolute top-0 left-0 w-full z-10 bg-white lg:flex-row lg:flex-nowrap lg:justify-start flex items-center py-1 px-4 lg:bg-transparent">
-          <div class="w-full mx-aut0 items-center flex justify-between lg:flex-nowrap flex-wrap lg:px-6 px-4">
-             <a href="javascript:;" class="text-blueGray-800 lg:text-white text-sm uppercase inline-block font-semibold my-3">Settings Page</a><button class="ml-auto cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-blueGray-400 rounded bg-transparent block outline-none focus:outline-none text-blueGray-300 lg:hidden" type="button"><i class="fas fa-bars"></i></button>
-             <div class="items-center w-full lg:flex lg:w-auto flex-grow duration-300 transition-all ease-in-out lg:h-auto-important hidden">
-                <form class="flex flex-row flex-wrap items-center ml-auto mr-3 mt-3">
-                   <div class="mb-3 pt-0"><input placeholder="Search here" type="text" class="border-transparent shadow px-3 py-2 text-sm  w-full placeholder-blueGray-200 text-blueGray-700 relative bg-white rounded-md outline-none focus:ring focus:ring-lightBlue-500 focus:ring-1 focus:border-lightBlue-500 border border-solid transition duration-200 " /></div>
-                </form>
-                <a class="text-blueGray-500 block" href="javascript:;">
-                   <div class="items-center flex"><span class="w-12 h-12 text-sm text-white bg-blueGray-300 inline-flex items-center justify-center rounded-full"><img alt="..." class="w-full rounded-full align-middle border-none shadow-lg" src="https://demos.creative-tim.com/notus-pro-react/static/media/team-1-800x800.fa5a7ac2.jpg" /></span></div>
-                </a>
-                <div class="block z-50">
-                   <div class="bg-white text-base float-left p-2 border list-none text-left rounded-lg shadow-lg min-w-48 transition-all duration-100 ease-in-out transform scale-95 opacity-0 absolute origin-top-right">
-                      <a href="javascript:;" class="text-sm px-3 py-2 block w-full whitespace-nowrap bg-transparent hover:bg-blueGray-100 rounded transition-all duration-100">Action</a><a href="javascript:;" class="text-sm px-3 py-2 block w-full whitespace-nowrap bg-transparent hover:bg-blueGray-100 rounded transition-all duration-100">Another action</a><a href="javascript:;" class="text-sm px-3 py-2 block w-full whitespace-nowrap bg-transparent hover:bg-blueGray-100 rounded transition-all duration-100">Something else here</a>
-                      <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                      <a href="javascript:;" class="text-sm px-3 py-2 block w-full whitespace-nowrap bg-transparent hover:bg-blueGray-100 rounded transition-all duration-100">Seprated link</a>
-                   </div>
-                </div>
-             </div>
-          </div>
-       </nav>
+      <div class="w-full relative flex ct-docs-disable-sidebar-content overflow-x-hidden">
+    
+    <div class="relative md:ml-64 bg-blueGray-100 w-full">
+       
        <div class="relative pt-32 pb-32 bg-lightBlue-500">
           <div class="px-4 md:px-6 mx-auto w-full">
              <div>
@@ -41,8 +41,8 @@ function AdminDashboard() {
                          <div class="flex-auto p-4">
                             <div class="flex flex-wrap">
                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">Traffic</h5>
-                                  <span class="font-bold text-xl">350,897</span>
+                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">Total Users</h5>
+                                  <span class="font-bold text-xl">{data.total_user_count}</span>
                                </div>
                                <div class="relative w-auto pl-4 flex-initial">
                                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-red-500"><i class="far fa-chart-bar"></i></div>
@@ -57,8 +57,8 @@ function AdminDashboard() {
                          <div class="flex-auto p-4">
                             <div class="flex flex-wrap">
                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">NEW USERS</h5>
-                                  <span class="font-bold text-xl">2,356</span>
+                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">Total Vendors</h5>
+                                  <span class="font-bold text-xl">{data.total_vendor_count}</span>
                                </div>
                                <div class="relative w-auto pl-4 flex-initial">
                                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-orange-500"><i class="fas fa-chart-pie"></i></div>
@@ -73,8 +73,8 @@ function AdminDashboard() {
                          <div class="flex-auto p-4">
                             <div class="flex flex-wrap">
                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">SALES</h5>
-                                  <span class="font-bold text-xl">924</span>
+                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">Total Properties</h5>
+                                  <span class="font-bold text-xl">{data.total_properties}</span>
                                </div>
                                <div class="relative w-auto pl-4 flex-initial">
                                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-pink-500"><i class="fas fa-users"></i></div>
@@ -89,8 +89,8 @@ function AdminDashboard() {
                          <div class="flex-auto p-4">
                             <div class="flex flex-wrap">
                                <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
-                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">PERFORMANCE</h5>
-                                  <span class="font-bold text-xl">49,65%</span>
+                                  <h5 class="text-blueGray-400 uppercase font-bold text-xs">Commission</h5>
+                                  <span class="font-bold text-xl">{data.total_amount}</span>
                                </div>
                                <div class="relative w-auto pl-4 flex-initial">
                                   <div class="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 shadow-lg rounded-full bg-lightBlue-500"><i class="fas fa-percent"></i></div>
@@ -104,68 +104,15 @@ function AdminDashboard() {
              </div>
           </div>
        </div>
-       <div class="px-4 md:px-6 mx-auto w-full -mt-24">
-          <div class="flex flex-wrap">
-             <div class="w-full xl:w-8/12 px-4">
-                <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-blueGray-800">
-                   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                      <div class="flex flex-wrap items-center">
-                         <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h6 class="uppercase mb-1 text-xs font-semibold text-blueGray-200">Overview</h6>
-                            <h2 class="text-xl font-semibold text-white">Sales value</h2>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="p-4 flex-auto">
-                      <div class="relative h-350-px">
-                      <canvas
-  width={496}
-  height={291}
-  style={{
-    display: 'block',
-    boxSizing: 'border-box',
-    height: '350px',
-    width: '595.5px'
-  }}
-  id="line-chart"
-></canvas>                      </div>
-                   </div>
-                </div>
-             </div>
-             <div class="w-full xl:w-4/12 px-4">
-                <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white">
-                   <div class="rounded-t mb-0 px-4 py-3 bg-transparent">
-                      <div class="flex flex-wrap items-center">
-                         <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h6 class="uppercase mb-1 text-xs font-semibold text-blueGray-500">Performance</h6>
-                            <h2 class="text-xl font-semibold text-blueGray-800">Total orders</h2>
-                         </div>
-                      </div>
-                   </div>
-                   <div class="p-4 flex-auto">
-                      <div class="relative h-350-px">
-                      <canvas
-  width={221}
-  height={291}
-  style={{
-    display: 'block',
-    boxSizing: 'border-box',
-    height: '350px',
-    width: '265.7px'
-  }}
-  id="bar-chart"
-></canvas>                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
+      
+             
           <div class="flex flex-wrap">
              <div class="w-full xl:w-8/12 px-4">
                 <div class="relative flex flex-col min-w-0 break-words w-full mb-8 shadow-lg rounded-lg bg-white text-blueGray-700">
                    <div class="px-6 py-4 border-0">
                       <div class="flex flex-wrap items-center">
                          <div class="relative w-full max-w-full flex-grow flex-1">
-                            <h3 class="font-bold text-lg text-blueGray-700">Page visits</h3>
+                            <h3 class="font-bold text-lg text-blueGray-700">Verfied Users</h3>
                          </div>
                       </div>
                    </div>
@@ -173,83 +120,56 @@ function AdminDashboard() {
                       <table class="items-center w-full bg-transparent border-collapse">
                          <thead>
                             <tr>
-                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Page name</th>
-                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Visitors</th>
-                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Unique Users</th>
-                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Bounce Rate</th>
+                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Username</th>
+                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Email</th>
+                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Phone</th>
+                               <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-bold text-left bg-blueGray-100 text-blueGray-500 border-blueGray-200">Status</th>
                             </tr>
                          </thead>
                          <tbody>
                             <tr>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">/argon/</span></div>
+                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">Justin</span></div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">4,569</div>
+                                  <div class="flex items-center">eshopyfashion@gmail.com</div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">340</div>
+                                  <div class="flex items-center">9876567212</div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><i class="fas fa-arrow-up mr-2 text-emerald-500"></i>46,53%</div>
+                                  <div class="flex items-center"><i class="fas fa-arrow-up mr-2 text-emerald-500"></i>Active</div>
                                </td>
                             </tr>
                             <tr>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">/argon/index.html</span></div>
+                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">shakil</span></div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">3,985</div>
+                                  <div class="flex items-center">muhammadshakil1968@gamil.com</div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">319</div>
+                                  <div class="flex items-center">9878675645</div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><i class="fas fa-arrow-down mr-2 text-orange-500"></i>46,53%</div>
+                                  <div class="flex items-center"><i class="fas fa-arrow-down mr-2 text-orange-500"></i>Active</div>
                                </td>
                             </tr>
                             <tr>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">/argon/charts.html</span></div>
+                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">Amal</span></div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">3,513</div>
+                                  <div class="flex items-center">amalsureshwnd123@gmail.com</div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">294</div>
+                                  <div class="flex items-center">8967563456</div>
                                </td>
                                <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><i class="fas fa-arrow-down mr-2 text-orange-500"></i>36,49%</div>
+                                  <div class="flex items-center"><i class="fas fa-arrow-down mr-2 text-orange-500"></i>Active</div>
                                </td>
                             </tr>
-                            <tr>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">/argon/tables.html</span></div>
-                               </td>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">2,050</div>
-                               </td>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">147</div>
-                               </td>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><i class="fas fa-arrow-up mr-2 text-emerald-500"></i>50,87%</div>
-                               </td>
-                            </tr>
-                            <tr>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><span class="ml-3 font-bold NaN">/argon/profile.html</span></div>
-                               </td>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">1,795</div>
-                               </td>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center">190</div>
-                               </td>
-                               <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                                  <div class="flex items-center"><i class="fas fa-arrow-up mr-2 text-red-500"></i>46,53%</div>
-                               </td>
-                            </tr>
+                           
                          </tbody>
                       </table>
                    </div>
@@ -286,7 +206,7 @@ function AdminDashboard() {
                                      <span class="mr-2">60%</span>
                                      <div class="relative w-full">
                                         <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
-                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" style={{width: '60%'}}></div>
+                                        <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-red-500" style={{ width: '60%' }}></div>
                                         </div>
                                      </div>
                                   </div>
@@ -304,7 +224,7 @@ function AdminDashboard() {
                                      <span class="mr-2">70%</span>
                                      <div class="relative w-full">
                                         <div class="overflow-hidden h-2 text-xs flex rounded bg-emerald-200">
-                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500" style={{width: '70%'}}></div>
+                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-emerald-500" style={{ width: '70%' }}></div>
                                         </div>
                                      </div>
                                   </div>
@@ -322,7 +242,7 @@ function AdminDashboard() {
                                      <span class="mr-2">80%</span>
                                      <div class="relative w-full">
                                         <div class="overflow-hidden h-2 text-xs flex rounded bg-indigo-200">
-                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500" style={{width: '80%'}}></div>
+                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-indigo-500" style={{ width: '80%' }}></div>
                                         </div>
                                      </div>
                                   </div>
@@ -340,7 +260,7 @@ function AdminDashboard() {
                                      <span class="mr-2">75%</span>
                                      <div class="relative w-full">
                                         <div class="overflow-hidden h-2 text-xs flex rounded bg-lightBlue-200">
-                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500" style={{width: '75%'}}></div>
+                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-lightBlue-500" style={{ width: '75%' }}></div>
                                         </div>
                                      </div>
                                   </div>
@@ -358,7 +278,7 @@ function AdminDashboard() {
                                      <span class="mr-2">30%</span>
                                      <div class="relative w-full">
                                         <div class="overflow-hidden h-2 text-xs flex rounded bg-amber-200">
-                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-amber-500" style={{width: '30%'}}></div>
+                                           <div class="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-amber-500" style={{ width: '30%' }}></div>
                                         </div>
                                      </div>
                                   </div>
@@ -390,10 +310,11 @@ function AdminDashboard() {
           </footer>
        </div>
     </div>
+ </div>
     </div>
       
      
-    </div>
+   
   );
 }
 
