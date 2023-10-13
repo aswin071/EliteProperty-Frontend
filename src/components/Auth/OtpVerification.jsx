@@ -30,7 +30,7 @@ const OtpVerification = () => {
 
     const handleVerifyOtp = async () => {
         try {
-          const response = await api.post('https://eliteproperty.onrender.com/accounts/verify-otp/', {
+          const response = await api.post('/accounts/verify-otp/', {
             otp: otp,
             email: emailAddress,
           });
