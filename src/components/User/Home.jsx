@@ -50,9 +50,9 @@ function Home() {
     <NavbarDefault />
   
    
-<div class="w-full">
+<div class="w-full mt-4">
     
-    <div className="flex bg-white dark:bg-gray-200 " style={{ height: '500px' }}>
+<div className="flex bg-white dark:bg-gray-200 mt-[-20px]" style={{ height: '500px' }}>
         <div className="flex items-center text-center lg:text-left px-8 md:px-12 lg:w-1/2">
           <div>
             <h2 className="text-3xl font-semibold text-white-800 md:text-4xl">Search For Your <span className="text-indigo-600">Home</span></h2>

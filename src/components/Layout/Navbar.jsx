@@ -93,7 +93,7 @@ export function NavbarDefault() {
                           </Link>
                         </li>
                         <li>
-                          {/* You can place your logout component here */}
+                         <Logout/>
                         </li>
                       </ul>
                     </div>
