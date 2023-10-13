@@ -183,7 +183,7 @@ function Home() {
           <p class="mb-8 text-blue-400 font-black">
           </p>
           <div class="flex items-left">
-          <Link href="/comingsoon">
+          <Link href="/agents">
            <a
            class="flex hover:border-2 hover:shadow-xl items-center text-white border border-2 justify-center w-full sm:px-10 py-4 leading-6 bg-black rounded-lg font-black"
            >
