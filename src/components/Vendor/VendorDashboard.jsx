@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Logout from '../Auth/Logout';
 import { useSelector } from 'react-redux';
 import VendorProfile from './VendorProfile';
 import PropertyManagement from './PropertyManagement';
 import VendorSidebar from '../Layout/VendorSidebar';
+import api from '../../api/axiosConfig';
 
 
 
 function VendorDashboard() {
   const user = useSelector((state) => state.user);
+  const [propertyList, setPropertylist] = useState([]);
   
   const vendorId = user.vendorId; 
+
+  useEffect(() => {
+    async function fetchPropertyData() {
+      try {
+        const userResponse = await api.get('vendors/dashboard/');
+        setPropertylist(userResponse.data);
+        console.log(userResponse.data)
+      } catch (error) {
+        console.error('Error fetching properties', error);
+      }
+    }
+
+    fetchPropertyData();
+  }, []);
+
 
   return (
     <div>
@@ -90,9 +107,9 @@ function VendorDashboard() {
                         </defs>
                     </svg>
                     <div>
-                        <h5 className="text-xl text-gray-600 text-center">Global Activities</h5>
+                        <h5 className="text-xl text-gray-600 text-center">Total Properties</h5>
                         <div className="mt-2 flex justify-center gap-4">
-                            <h3 className="text-3xl font-bold text-gray-700">$23,988</h3>
+                            <h3 className="text-3xl font-bold text-gray-700">{propertyList.property_count}</h3>
                             <div className="flex items-end gap-1 text-green-500">
                                 <svg className="w-3" viewBox="0 0 12 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M6.00001 0L12 8H-3.05176e-05L6.00001 0Z" fill="currentColor"/>
@@ -100,13 +117,13 @@ function VendorDashboard() {
                                 <span>2%</span>
                             </div>
                         </div>
-                        <span className="block text-center text-gray-500">Compared to last week $13,988</span>
+                        <span className="block text-center text-gray-500">Compared to last week </span>
                     </div>
                     <table className="w-full text-gray-600">
                         <tbody>
                             <tr>
-                                <td className="py-2">Tailored ui</td>
-                                <td className="text-gray-500">896</td>
+                                <td className="py-2">Property For Sale</td>
+                                <td className="text-gray-500">{propertyList.sale_count}</td>
                                 <td>
                                     <svg className="w-16 ml-auto" viewBox="0 0 68 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2"/>
@@ -124,8 +141,8 @@ function VendorDashboard() {
                                 </td>   
                             </tr>
                             <tr>
-                                <td className="py-2">Customize</td>
-                                <td className="text-gray-500">1200</td>
+                                <td className="py-2">Property For Rent</td>
+                                <td className="text-gray-500">{propertyList.rent_count}</td>
                                 <td>
                                     <svg className="w-16 ml-auto" viewBox="0 0 68 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2"/>
@@ -142,34 +159,16 @@ function VendorDashboard() {
                                     </svg>
                                 </td>   
                             </tr>
-                            <tr>
-                                <td className="py-2">Other</td>
-                                <td className="text-gray-500">12</td>
-                                <td>
-                                    <svg className="w-16 ml-auto" viewBox="0 0 68 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2"/>
-                                        <rect opacity="0.4" x="19" width="14" height="21" rx="1" fill="#e4e4f2"/>
-                                        <rect opacity="0.4" x="35" width="14" height="21" rx="1" fill="#e4e4f2"/>
-                                        <rect opacity="0.4" x="51" width="17" height="21" rx="1" fill="#e4e4f2"/>
-                                        <path d="M0 6C8.62687 6 6.85075 12.75 17 12.75C27.1493 12.75 25.3731 9 34 9C42.6269 9 42.262 13.875 49 13.875C55.5398 13.875 58.3731 6 67 6" stroke="url(#paint0_linear_622:13649)" stroke-width="2" stroke-linejoin="round"/>
-                                        <defs>
-                                        <linearGradient id="paint0_linear_622:13649" x1="67" y1="7.96873" x2="1.67368" y2="8.44377" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#FFD422"/>
-                                        <stop offset="1" stop-color="#FF7D05"/>
-                                        </linearGradient>
-                                        </defs>
-                                    </svg>
-                                </td>   
-                            </tr>
+                           
                         </tbody>
                     </table> 
                 </div>
             </div>
             <div>
                 <div className="h-full py-6 px-6 rounded-xl border border-gray-200 bg-white">
-                    <h5 className="text-xl text-gray-700">Downloads</h5>
+                    <h5 className="text-xl text-gray-700">Bookings</h5>
                     <div className="my-8">
-                        <h1 className="text-5xl font-bold text-gray-800">64,5%</h1>
+                        <h1 className="text-5xl font-bold text-gray-800"> {propertyList.sale_bookings + propertyList.rent_bookings}</h1>
                         <span className="text-gray-500">Compared to last week $13,988</span>
                     </div>
                     <svg className="w-full" viewBox="0 0 218 69" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -189,8 +188,8 @@ function VendorDashboard() {
                     <table className="mt-6 -mb-2 w-full text-gray-600">
                         <tbody>
                             <tr>
-                                <td className="py-2">From new users</td>
-                                <td className="text-gray-500">896</td>
+                                <td className="py-2">Bookings for Sale Property</td>
+                                <td className="text-gray-500">{propertyList.sale_bookings}</td>
                                 <td>
                                     <svg className="w-16 ml-auto" viewBox="0 0 68 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2"/>
@@ -208,8 +207,8 @@ function VendorDashboard() {
                                 </td>   
                             </tr>
                             <tr>
-                                <td className="py-2">From old users</td>
-                                <td className="text-gray-500">1200</td>
+                                <td className="py-2">Bookings for Rent Property</td>
+                                <td className="text-gray-500">{propertyList.rent_bookings}</td>
                                 <td>
                                     <svg className="w-16 ml-auto" viewBox="0 0 68 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <rect opacity="0.4" width="17" height="21" rx="1" fill="#e4e4f2"/>
